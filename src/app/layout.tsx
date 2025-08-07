@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer";
 import NeuralBackground from "@/components/NeuralBackground";
 import Preloader from "@/components/Preloader";
 import ClientOnly from "@/components/ClientOnly";
@@ -45,6 +46,7 @@ export default function RootLayout({
         
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -61,6 +61,8 @@ export default function Preloader() {
         const onProgressComplete = () => {
             setIsHidden(true);
             document.body.classList.add('loaded');
+            // Восстанавливаем скролл сразу при завершении
+            document.body.style.overflow = 'auto';
             
             // Удаляем прелоадер из DOM через время анимации
             setTimeout(() => {

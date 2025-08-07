@@ -2,15 +2,6 @@
    СТИЛИ ПРЕЛОАДЕРА
    =============== */
 
-/* Скрытие содержимого во время загрузки */
-:global(body) {
-    overflow: hidden;
-}
-
-:global(body.loaded) {
-    overflow: auto;
-}
-
 /* Скрываем весь контент кроме прелоадера до завершения загрузки */
 :global(body:not(.loaded) .header),
 :global(body:not(.loaded) .hero),
