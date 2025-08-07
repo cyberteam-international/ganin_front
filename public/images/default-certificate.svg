@@ -1,0 +1,8 @@
+<!-- Placeholder SVG for default certificate -->
+<svg width="300" height="180" viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="180" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="298" height="178" stroke="#e9ecef" stroke-width="2"/>
+  <circle cx="150" cy="90" r="30" fill="#dee2e6"/>
+  <path d="M135 85L145 95L165 75" stroke="#6c757d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="150" y="130" text-anchor="middle" fill="#6c757d" font-family="Arial, sans-serif" font-size="14">Сертификат</text>
+</svg>
