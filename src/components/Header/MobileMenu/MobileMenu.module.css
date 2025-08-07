@@ -1,0 +1,111 @@
+/* Боковое меню */
+.mobileMenu {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 350px;
+    height: 100vh;
+    background: var(--bg-primary, #f6f1eb);
+    box-shadow: -5px 0 20px rgba(44, 62, 80, 0.1);
+    transition: right 0.3s ease;
+    z-index: 2000;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobileMenu.active {
+    right: 0;
+}
+
+/* Заголовок мобильного меню */
+.mobileMenuHeader {
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary-dark, #2c3e50);
+}
+
+.mobileMenuTitle {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Кнопка закрытия мобильного меню */
+.mobileMenuClose {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+    width: 45px;
+    height: 45px;
+    background: #3e566e;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mobileMenuClose:hover {
+    background: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.mobileMenuClose span {
+    width: 20px;
+    height: 2.5px;
+    background: white;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+    position: absolute;
+}
+
+.mobileMenuClose:hover span {
+    background: #3e566e;
+}
+
+.mobileMenuClose span:nth-child(1) {
+    transform: rotate(45deg);
+}
+
+.mobileMenuClose span:nth-child(2) {
+    transform: rotate(-45deg);
+}
+
+/* Навигация в боковом меню */
+.navigation {
+    position: relative;
+    padding: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.navMenu {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+}
+
+/* Социальные сети в низу мобильного меню */
+.mobileSocialSection {
+    padding: 20px 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--primary-dark, #2c3e50);
+}

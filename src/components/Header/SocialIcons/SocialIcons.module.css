@@ -1,0 +1,78 @@
+/* Социальные иконки */
+.socialIcons {
+    display: flex;
+    gap: 15px;
+}
+
+@media screen and (max-width: 768px) {
+    .socialIcons {
+        display: none; /* Скрываем иконки на мобильных */
+    }
+}
+
+.mobileSocialIcons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.socialLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-size: 18px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.socialLink::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.socialLink:hover::before {
+    opacity: 1;
+}
+
+.socialLink.vk {
+    background: linear-gradient(135deg, #4680C2 0%, #5a9fd4 100%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(70, 128, 194, 0.4);
+}
+
+.socialLink.telegram {
+    background: linear-gradient(135deg, #0088cc 0%, #00a8e8 100%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 136, 204, 0.4);
+}
+
+.socialLink.whatsapp {
+    background: linear-gradient(135deg, #25D366 0%, #38e54d 100%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+}
+
+.socialLink:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Скрываем социальные сети в мобильном меню на десктопе */
+@media (min-width: 769px) {
+    .mobileSocialIcons {
+        display: none !important;
+    }
+}

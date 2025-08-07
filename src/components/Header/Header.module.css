@@ -1,0 +1,48 @@
+/* Основная шапка */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    backdrop-filter: none;
+    z-index: 1000;
+    border-bottom: none;
+    transition: all 0.3s ease;
+}
+
+.header.scrolled {
+    background-color: var(--primary-dark, #2c3e50);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Верхняя часть шапки */
+.headerTop {
+    background: transparent;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Логотип */
+.logo h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-dark, #2c3e50);
+    margin: 0;
+}
+
+.header.scrolled .logo h1 {
+    color: #fff;
+}
+
+/* Правая часть шапки */
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

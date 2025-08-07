@@ -1,0 +1,46 @@
+/* Бургер меню */
+.burgerMenu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+    width: 45px;
+    height: 45px;
+    background: #3e566e;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.burgerMenu:hover {
+    background: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.burgerMenu span {
+    width: 20px;
+    height: 2.5px;
+    background: white;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.burgerMenu:hover span {
+    background: #3e566e;
+}
+
+.burgerMenu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burgerMenu.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.burgerMenu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}

@@ -1,0 +1,168 @@
+/* ===============
+   СТИЛИ ПРЕЛОАДЕРА
+   =============== */
+
+/* Скрытие содержимого во время загрузки */
+:global(body) {
+    overflow: hidden;
+}
+
+:global(body.loaded) {
+    overflow: auto;
+}
+
+/* Скрываем весь контент кроме прелоадера до завершения загрузки */
+:global(body:not(.loaded) .header),
+:global(body:not(.loaded) .hero),
+:global(body:not(.loaded) .additional-info),
+:global(body:not(.loaded) .services),
+:global(body:not(.loaded) .why-me),
+:global(body:not(.loaded) .education),
+:global(body:not(.loaded) .articles),
+:global(body:not(.loaded) .success-stories),
+:global(body:not(.loaded) .footer) {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Плавное появление контента после загрузки */
+:global(body.loaded .header),
+:global(body.loaded .hero),
+:global(body.loaded .additional-info),
+:global(body.loaded .services),
+:global(body.loaded .why-me),
+:global(body.loaded .education),
+:global(body.loaded .articles),
+:global(body.loaded .success-stories),
+:global(body.loaded .footer) {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+/* Скрываем глобальный нейронный фон до завершения загрузки */
+:global(body:not(.loaded) #globalNeuralCanvas) {
+    opacity: 0;
+    visibility: hidden;
+}
+
+:global(body.loaded #globalNeuralCanvas) {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+/* Дополнительно скрываем основной контент на время загрузки */
+:global(body:not(.loaded) main),
+:global(body:not(.loaded) section:not(.preloader)),
+:global(body:not(.loaded) header:not(.preloader *)),
+:global(body:not(.loaded) footer) {
+    display: none !important;
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Контент прелоадера */
+.preloaderContent {
+    position: relative;
+    z-index: 10; /* Поднимаем выше глобального canvas */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Текст прогресса */
+.progressText {
+    text-align: center;
+    position: relative;
+}
+
+.progressPercent {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #2c3e50;
+    text-shadow: 
+        0 0 20px rgba(44, 62, 80, 0.5),
+        0 0 40px rgba(44, 62, 80, 0.3),
+        0 0 60px rgba(44, 62, 80, 0.2);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.1em;
+    background: linear-gradient(45deg, #2c3e50, #34495e, #2c3e50);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: progressGlow 3s ease-in-out infinite, gradientShift 4s ease-in-out infinite, progressPulse 2s ease-in-out infinite;
+}
+
+/* Анимация свечения */
+@keyframes progressPulse {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 
+            0 0 20px rgba(44, 62, 80, 0.5),
+            0 0 40px rgba(44, 62, 80, 0.3),
+            0 0 60px rgba(44, 62, 80, 0.2);
+    }
+    50% {
+        transform: scale(1.05);
+        text-shadow: 
+            0 0 30px rgba(44, 62, 80, 0.7),
+            0 0 60px rgba(44, 62, 80, 0.5),
+            0 0 90px rgba(44, 62, 80, 0.3);
+    }
+}
+
+/* Анимация градиента */
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Анимация основного свечения */
+@keyframes progressGlow {
+    0%, 100% {
+        filter: brightness(1) saturate(1);
+    }
+    50% {
+        filter: brightness(1.2) saturate(1.1);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .progressPercent {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .progressPercent {
+        font-size: 2.5rem;
+        letter-spacing: 0.05em;
+    }
+}
