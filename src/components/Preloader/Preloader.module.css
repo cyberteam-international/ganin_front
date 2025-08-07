@@ -11,7 +11,9 @@
 :global(body:not(.loaded) .education),
 :global(body:not(.loaded) .articles),
 :global(body:not(.loaded) .success-stories),
-:global(body:not(.loaded) .footer) {
+:global(body:not(.loaded) .footer),
+:global(body:not(.loaded) main),
+:global(body:not(.loaded) .not-found-container) {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -26,7 +28,9 @@
 :global(body.loaded .education),
 :global(body.loaded .articles),
 :global(body.loaded .success-stories),
-:global(body.loaded .footer) {
+:global(body.loaded .footer),
+:global(body.loaded main),
+:global(body.loaded .not-found-container) {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
