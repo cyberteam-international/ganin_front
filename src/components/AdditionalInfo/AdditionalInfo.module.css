@@ -1,54 +1,88 @@
-/* Дополнительная информация */
+/* ===========================================
+   СЕКЦИЯ ДОПОЛНИТЕЛЬНОЙ ИНФОРМАЦИИ
+   =========================================== */
 .additional-info {
-    padding: clamp(40px, 8vh, 80px) 0;
-    background: var(--bg-secondary);
+    padding: 80px 0;
+    background: #2c3e50;
+    color: white;
     position: relative;
+}
+
+.additional-info .container {
+    position: relative;
+    z-index: 1;
+}
+
+.additional-info::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+    z-index: -1;
 }
 
 .philosophy-quote {
-    max-width: 900px;
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
     margin: 0 auto;
     text-align: center;
-    position: relative;
-}
-
-.philosophy-quote p {
-    font-size: clamp(18px, 2.5vw, 24px);
-    line-height: 1.8;
-    color: var(--text-primary);
-    font-weight: 400;
     font-style: italic;
-    text-align: justify;
-    margin: 0;
     position: relative;
-    padding: 40px 0;
-}
-
-.philosophy-quote::before,
-.philosophy-quote::after {
-    content: '"';
-    font-size: clamp(60px, 8vw, 120px);
-    color: var(--accent-color);
-    font-family: Georgia, serif;
-    position: absolute;
-    font-weight: bold;
-    opacity: 0.3;
 }
 
 .philosophy-quote::before {
-    top: -20px;
-    left: -20px;
+    content: '"';
+    font-size: 120px;
+    font-family: Georgia, serif;
+    color: var(--bg-accent);
+    position: absolute;
+    top: -40px;
+    left: -30px;
+    line-height: 1;
+    opacity: 0.3;
 }
 
 .philosophy-quote::after {
-    bottom: -40px;
-    right: -20px;
+    content: '"';
+    font-size: 120px;
+    font-family: Georgia, serif;
+    color: var(--bg-accent);
+    position: absolute;
+    bottom: -80px;
+    right: -30px;
+    line-height: 1;
+    opacity: 0.3;
+}
+
+.philosophy-quote p {
+    font-size: 20px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    padding: 40px 60px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    text-align: left;
+    position: relative;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.philosophy-quote p:last-child {
+    margin-bottom: 0;
 }
 
 /* Адаптивные стили */
 @media (max-width: 768px) {
     .additional-info {
-        padding: clamp(30px, 6vh, 60px) 0;
+        padding: 50px 0;
     }
 
     .philosophy-quote {
@@ -96,6 +130,10 @@
 
 /* Мобильные телефоны */
 @media (max-width: 480px) {
+    .additional-info {
+        padding: 40px 0;
+    }
+
     .philosophy-quote {
         max-width: 100%;
         padding: 0 10px;
