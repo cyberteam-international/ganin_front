@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import NeuralBackground from "@/components/NeuralBackground";
 import Preloader from "@/components/Preloader";
+import ClientOnly from "@/components/ClientOnly";
 import Script from "next/script";
 
 const inter = Inter({
@@ -30,12 +31,17 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${inter.variable} antialiased`}
+        suppressHydrationWarning={true}
       >
         {/* Глобальный нейронный фон */}
-        <NeuralBackground />
+        <ClientOnly>
+          <NeuralBackground />
+        </ClientOnly>
         
         {/* Прелоадер */}
-        <Preloader />
+        <ClientOnly>
+          <Preloader />
+        </ClientOnly>
         
         <Header />
         {children}

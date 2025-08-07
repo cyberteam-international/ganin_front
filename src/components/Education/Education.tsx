@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 
 // Import Swiper styles
 import 'swiper/css';

@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import WhyMe from "@/components/WhyMe";
 import Education from "@/components/Education";
 import Articles from "@/components/Articles";
+import SuccessStories from "@/components/SuccessStories";
 
 export const metadata: Metadata = {
   title: "Ганин Вячеслав - Клинический психолог",
@@ -20,6 +21,7 @@ export default function Home() {
       <WhyMe />
       <Education />
       <Articles />
+      <SuccessStories />
     </main>
   );
 }
