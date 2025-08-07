@@ -51,25 +51,75 @@
         padding: clamp(30px, 6vh, 60px) 0;
     }
 
-    .philosophy-quote p {
-        font-size: clamp(16px, 4vw, 20px);
-        line-height: 1.7;
-        text-align: left;
-        padding: 30px 0;
+    .philosophy-quote {
+        max-width: 100%;
+        padding: 0 10px;
     }
 
     .philosophy-quote::before,
     .philosophy-quote::after {
-        font-size: clamp(40px, 12vw, 80px);
+        font-size: 60px;
+        opacity: 0.2;
     }
 
     .philosophy-quote::before {
-        top: -10px;
+        top: -20px;
         left: -10px;
     }
 
     .philosophy-quote::after {
-        bottom: -30px;
+        bottom: -40px;
         right: -10px;
+    }
+
+    .philosophy-quote p {
+        font-size: 16px;
+        line-height: 1.7;
+        text-align: left;
+        padding: 25px 20px;
+        margin-bottom: 20px;
+    }
+}
+
+/* Планшеты средние */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .philosophy-quote::before,
+    .philosophy-quote::after {
+        font-size: 80px;
+    }
+
+    .philosophy-quote p {
+        padding: 35px 40px;
+        font-size: 18px;
+    }
+}
+
+/* Мобильные телефоны */
+@media (max-width: 480px) {
+    .philosophy-quote {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .philosophy-quote::before,
+    .philosophy-quote::after {
+        font-size: 60px;
+        opacity: 0.2;
+    }
+
+    .philosophy-quote::before {
+        top: -20px;
+        left: -10px;
+    }
+
+    .philosophy-quote::after {
+        bottom: -40px;
+        right: -10px;
+    }
+
+    .philosophy-quote p {
+        font-size: 16px;
+        padding: 25px 20px;
+        margin-bottom: 20px;
     }
 }

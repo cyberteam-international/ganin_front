@@ -90,6 +90,12 @@ body {
   }
 }
 
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+}
+
 /* Плавная прокрутка */
 html {
     scroll-behavior: smooth;
