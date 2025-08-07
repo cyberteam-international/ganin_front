@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import AdditionalInfo from "@/components/AdditionalInfo";
 import Services from "@/components/Services";
+import WhyMe from "@/components/WhyMe";
 
 export const metadata: Metadata = {
   title: "Ганин Вячеслав - Клинический психолог",
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <AdditionalInfo />
       <Services />
+      <WhyMe />
     </main>
   );
 }

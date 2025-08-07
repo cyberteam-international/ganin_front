@@ -1,0 +1,218 @@
+/* =================
+   СЕКЦИЯ "ПОЧЕМУ Я"
+   ================= */
+.why-me {
+    padding: 120px 0;
+    background: #2c3e50;
+    position: relative;
+    overflow: hidden;
+}
+
+.why-me .container {
+    position: relative;
+    z-index: 1;
+}
+
+.dark-section {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.dark-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.section-title {
+    color: white;
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: clamp(32px, 6vw, 48px);
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.why-me-circle-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.circle-point {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.point-content {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.point-icon {
+    font-size: 32px;
+    color: #687ae4;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.point-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 12px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.point-content p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    text-align: center;
+}
+
+/* Специальные стили для карточки с фото */
+.photo-card .point-content {
+    background: none;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    overflow: hidden;
+}
+
+.photo-card .point-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(155, 89, 182, 0.1) 100%);
+    border-radius: 18px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.photo-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.circular-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    border: none;
+}
+
+/* Планшеты */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .why-me-circle-layout {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 25px;
+        max-width: 800px;
+    }
+    
+    .circle-point {
+        height: 250px;
+    }
+    
+    .point-content {
+        padding: 20px;
+    }
+    
+    .circular-photo {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+    }
+    
+    .point-content h3 {
+        font-size: 16px;
+    }
+    
+    .point-content p {
+        font-size: 13px;
+    }
+}
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+    .why-me {
+        padding: 40px 0;
+    }
+
+    .section-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+}
+
+/* Мобильные телефоны */
+@media (max-width: 480px) {
+    .why-me-circle-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+        gap: 20px;
+        max-width: 400px;
+    }
+    
+    .circle-point {
+        height: 200px;
+    }
+    
+    .point-content {
+        padding: 20px;
+    }
+    
+    .circular-photo {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+    }
+    
+    .photo-container {
+        margin-bottom: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .point-content h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    
+    .point-content p {
+        font-size: 13px;
+    }
+}
