@@ -1,0 +1,75 @@
+/* Дополнительная информация */
+.additional-info {
+    padding: clamp(40px, 8vh, 80px) 0;
+    background: var(--bg-secondary);
+    position: relative;
+}
+
+.philosophy-quote {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.philosophy-quote p {
+    font-size: clamp(18px, 2.5vw, 24px);
+    line-height: 1.8;
+    color: var(--text-primary);
+    font-weight: 400;
+    font-style: italic;
+    text-align: justify;
+    margin: 0;
+    position: relative;
+    padding: 40px 0;
+}
+
+.philosophy-quote::before,
+.philosophy-quote::after {
+    content: '"';
+    font-size: clamp(60px, 8vw, 120px);
+    color: var(--accent-color);
+    font-family: Georgia, serif;
+    position: absolute;
+    font-weight: bold;
+    opacity: 0.3;
+}
+
+.philosophy-quote::before {
+    top: -20px;
+    left: -20px;
+}
+
+.philosophy-quote::after {
+    bottom: -40px;
+    right: -20px;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+    .additional-info {
+        padding: clamp(30px, 6vh, 60px) 0;
+    }
+
+    .philosophy-quote p {
+        font-size: clamp(16px, 4vw, 20px);
+        line-height: 1.7;
+        text-align: left;
+        padding: 30px 0;
+    }
+
+    .philosophy-quote::before,
+    .philosophy-quote::after {
+        font-size: clamp(40px, 12vw, 80px);
+    }
+
+    .philosophy-quote::before {
+        top: -10px;
+        left: -10px;
+    }
+
+    .philosophy-quote::after {
+        bottom: -30px;
+        right: -10px;
+    }
+}
