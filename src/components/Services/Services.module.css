@@ -1,0 +1,271 @@
+/* ===============
+   СТИЛИ УСЛУГ
+   =============== */
+
+/* Секция услуг */
+.services {
+    padding: 120px 0;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.services .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Заголовок секции */
+.section-title {
+    font-size: clamp(32px, 6vw, 48px);
+    font-weight: 800;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 60px;
+    line-height: 1.2;
+}
+
+/* Сетка услуг */
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Карточка услуги */
+.service-card {
+    background: #f8f9fa;
+    padding: 50px 40px;
+    border-radius: var(--border-radius);
+    text-align: left;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 40px;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--accent-color);
+}
+
+/* Иконка услуги */
+.service-icon {
+    width: 90px;
+    height: 90px; 
+    background: var(--primary-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 40px;
+    box-shadow: var(--shadow-medium);
+    flex-shrink: 0;
+}
+
+/* Заголовок услуги */
+.service-card h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    margin-top: 0;
+    background: var(--dark-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Стилизация Font Awesome иконки в заголовке */
+.service-card h3 :global(.fas.fa-arrow-right) {
+    width: 28px;
+    height: 28px;
+    background: rgba(44, 62, 80, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c3e50;
+    font-size: 12px;
+    flex-shrink: 0;
+    -webkit-text-fill-color: #2c3e50;
+    transition: all 0.3s ease;
+    transform: rotate(-45deg);
+}
+
+.service-card h3:hover :global(.fas.fa-arrow-right) {
+    transform: rotate(0);
+    cursor: pointer;
+    background: var(--primary-dark);
+    color: white;
+    -webkit-text-fill-color: white;
+}
+
+/* Контейнер контента услуги */
+.service-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.service-content a {
+    text-decoration: none;
+}
+
+/* Список услуг */
+.service-card ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.service-card li {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.service-card li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px 15px 25px;
+    color: #555;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.service-card li a::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: rgba(44, 62, 80, 0.1);
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232c3e50' viewBox='0 0 24 24'%3E%3Cpath d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z'/%3E%3C/svg%3E");
+    background-size: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translateX(-5px);
+}
+
+.service-card li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.95);
+    border-left-color: var(--primary-dark);
+}
+
+.service-card li:hover a {
+    color: #333;
+    padding-right: 10px;
+}
+
+.service-card li:hover a::after {
+    background: var(--accent-color);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z'/%3E%3C/svg%3E");
+    transform: translateX(0);
+}
+
+/* Адаптивные стили для планшетов */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .service-card {
+        grid-template-columns: auto 1fr;
+        gap: 30px;
+        text-align: left;
+    }
+    
+    .service-card ul {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 12px 20px;
+    }
+    
+    .service-card li a::after {
+        width: 22px;
+        height: 22px;
+        background-size: 11px;
+    }
+}
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+    .services {
+        padding: 80px 0;
+    }
+
+    .section-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+}
+
+/* Мобильные телефоны */
+@media (max-width: 480px) {
+    .services {
+        padding: 80px 0;
+    }
+
+    .service-card {
+        padding: 30px 20px;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .service-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        margin: 0 auto;
+    }
+    
+    .service-card h3 {
+        justify-content: center;
+        font-size: 24px;
+        width: 277px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+    
+    .service-card ul {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .service-card li a {
+        padding: 12px 15px 12px 35px;
+        font-size: 14px;
+        text-align: left;
+    }
+    
+    .service-card li a::after {
+        width: 20px;
+        height: 20px;
+        background-size: 10px;
+    }
+}
