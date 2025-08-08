@@ -1,0 +1,9 @@
+.page { padding: 80px 0; }
+.title { font-size: clamp(28px, 5vw, 40px); font-weight: 800; color: var(--text-primary); margin-bottom: 16px; }
+.meta { color: #999; font-size: 13px; margin-bottom: 24px; }
+.cover { position: relative; width: 100%; border-radius: 16px; overflow: hidden; margin: 20px 0 30px; background: #fff; min-height: 240px; }
+.content { font-size: 16px; color: var(--text-primary); line-height: 1.8; }
+.content p { margin: 16px 0; }
+.content h2 { margin-top: 28px; font-size: 24px; }
+.content img { max-width: 100%; height: auto; border-radius: 12px; }
+.back { display: inline-block; margin-bottom: 16px; color: var(--accent-color); }
