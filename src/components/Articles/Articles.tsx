@@ -92,14 +92,14 @@ export default function Articles() {
                             slidesPerView: 3,
                             spaceBetween: 30,
                             centeredSlides: false,
-                            allowTouchMove: false,
+                            allowTouchMove: true,
                             loop: false,
                         },
                         1200: {
                             slidesPerView: 3,
                             spaceBetween: 30,
                             centeredSlides: false,
-                            allowTouchMove: false,
+                            allowTouchMove: true,
                             loop: false,
                         }
                     }}

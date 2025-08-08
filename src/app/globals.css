@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "swiper/css";
 
 /* =========================
    ОБЩИЕ СТИЛИ И ПЕРЕМЕННЫЕ
@@ -163,3 +164,18 @@ html {
         transform: translateY(0);
     }
 }
+
+/* --- Swiper drag fix ---
+   Глобальный transition на transform мешает перетаскиванию слайдов.
+   Для элементов внутри .swiper убираем transition по transform,
+   чтобы drag работал, а анимации Swiper (inline-style) по-прежнему срабатывали. */
+.swiper, .swiper * {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: auto;
+}
+.swiper { touch-action: pan-y; }
+.swiper-horizontal { touch-action: pan-y; }
+.swiper-vertical { touch-action: pan-x; }
+.swiper-wrapper { will-change: transform; }
