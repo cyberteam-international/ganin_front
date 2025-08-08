@@ -12,7 +12,7 @@
   gap: 30px;
 }
 @media (min-width: 1024px) {
-  .grid { grid-template-columns: repeat(3, 1fr); }
+  .grid { grid-template-columns: 1fr; }
 }
 .card { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: var(--border-radius); overflow: hidden; display: flex; flex-direction: column; }
 .cover { position: relative; width: 100%; padding-top: 56%; background: #fff; }
@@ -21,3 +21,21 @@
 .excerpt { color: #666; font-size: 14px; line-height: 1.5; }
 .meta { font-size: 12px; color: #999; margin-top: auto; }
 .readMore { margin-top: 10px; align-self: flex-start; background: var(--accent-color); color: #fff; border: 0; padding: 10px 16px; border-radius: 8px; cursor: pointer; }
+
+/* Hide Read button on mobile */
+@media (max-width: 1023px) { .readMore { display: none; } }
+
+/* Desktop: make all cards full-width two-column */
+@media (min-width: 1024px) {
+  .card { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: stretch; }
+  .card .cover { padding-top: 0; min-height: 320px; }
+  .card .body { padding: 24px; }
+  .card .cardTitle { font-size: 24px; }
+  .card .excerpt { font-size: 15px; }
+}
+
+/* Legacy featured class kept for compatibility */
+.featured { grid-column: span 1; margin-bottom: 30px; }
+@media (min-width: 1024px) {
+  .featured { grid-column: 1 / -1; }
+}

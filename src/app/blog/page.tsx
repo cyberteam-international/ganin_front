@@ -29,16 +29,43 @@ function coverUrl(cover: ArticleItem['cover']) {
 
 export default async function BlogPage() {
   const list = await getArticles();
+  if (!list.length) {
+    return (
+      <section className={styles.page}>
+        <div className="container">
+          <h1 className={styles.title}>Блог</h1>
+          <div>Статей пока нет</div>
+        </div>
+      </section>
+    );
+  }
+  const [first, ...rest] = list;
+  const firstParam = first.documentId || String(first.id);
 
   return (
     <section className={styles.page}>
       <div className="container">
         <h1 className={styles.title}>Блог</h1>
-        {list.length === 0 ? (
-          <div>Статей пока нет</div>
-        ) : (
+
+        {/* Featured card (full-width on desktop, normal on mobile) */}
+        <article className={`${styles.card} ${styles.featured}`}>
+          <Link href={`/blog/${firstParam}`}>
+            <div className={styles.cover}>
+              <Image src={coverUrl(first.cover)} alt={first.title} fill sizes="(max-width: 1024px) 100vw, 66vw" style={{ objectFit: 'cover' }} />
+            </div>
+          </Link>
+          <div className={styles.body}>
+            <h3 className={styles.cardTitle}>{first.title}</h3>
+            {first.excerpt && <p className={styles.excerpt}>{first.excerpt}</p>}
+            <div className={styles.meta}>{first.publishedAt ? new Date(first.publishedAt).toLocaleDateString('ru-RU') : ''}</div>
+            <Link href={`/blog/${firstParam}`} className={styles.readMore}>Читать</Link>
+          </div>
+        </article>
+
+        {/* Other articles grid */}
+        {rest.length > 0 && (
           <div className={styles.grid}>
-            {list.map((a) => {
+            {rest.map((a) => {
               const param = a.documentId || String(a.id);
               return (
                 <article key={a.id} className={styles.card}>
