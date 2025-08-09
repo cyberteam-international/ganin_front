@@ -12,13 +12,13 @@ import { buildStrapiURL } from '@/lib/strapi';
 export default function Education() {
   const [educationData, setEducationData] = useState<EducationItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [modalImage, setModalImage] = useState<{ src: string; title: string } | null>(null);
 
   const handleOpenModal = (item: EducationItem) => {
     const largeUrl = item.Picture?.formats?.large?.url || item.Picture?.url || '';
     setModalImage({ src: buildStrapiURL(largeUrl), title: item.Title });
   };
-
   const handleCloseModal = () => setModalImage(null);
 
   useEffect(() => {
@@ -26,6 +26,8 @@ export default function Education() {
       try {
         const list = await getEducationItems();
         setEducationData(list);
+      } catch (e: any) {
+        setError(e.message || 'Ошибка загрузки');
       } finally {
         setLoading(false);
       }
@@ -33,24 +35,20 @@ export default function Education() {
   }, []);
 
   useEffect(() => {
-    const onEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && modalImage) handleCloseModal();
-    };
-    if (modalImage) {
-      document.addEventListener('keydown', onEsc);
-      return () => document.removeEventListener('keydown', onEsc);
-    }
+    const onEsc = (e: KeyboardEvent) => { if (e.key === 'Escape' && modalImage) handleCloseModal(); };
+    if (modalImage) { document.addEventListener('keydown', onEsc); return () => document.removeEventListener('keydown', onEsc); }
   }, [modalImage]);
 
   return (
     <section id="education" className={styles.education}>
       <div className="container">
         <h2 className={styles['section-title']}>Образование</h2>
-        {loading ? (
-          <div className={styles.loading}><div className={styles['loading-text']}>Загрузка данных...</div></div>
-        ) : educationData.length === 0 ? (
+        {loading && <div className={styles.loading}><div className={styles['loading-text']}>Загрузка данных...</div></div>}
+        {!loading && error && <div className={styles.loading}><div className={styles['loading-text']}>{error}</div></div>}
+        {!loading && !error && educationData.length === 0 && (
           <div className={styles.loading}><div className={styles['loading-text']}>Данные об образовании не найдены</div></div>
-        ) : (
+        )}
+        {!loading && !error && educationData.length > 0 && (
           <Swiper
             className={styles['education-swiper']}
             slidesPerView="auto"
@@ -80,7 +78,6 @@ export default function Education() {
           </Swiper>
         )}
       </div>
-
       {modalImage && (
         <div className={`${styles['certificate-modal']} ${styles.active}`}>
           <div className={styles['certificate-modal-overlay']} onClick={handleCloseModal}>

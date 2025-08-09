@@ -11,9 +11,9 @@ export async function fetchStrapi<T = any>(path: string, init?: RequestInit): Pr
       'Content-Type': 'application/json',
       ...(init?.headers || {}) as Record<string, string>,
     },
+    // Force fresh data to fix missing updates in home sections
+    cache: 'no-store',
     ...init,
-    // Next.js fetch caching can be controlled here if needed
-    // cache: 'no-store',
   });
 
   if (!res.ok) {

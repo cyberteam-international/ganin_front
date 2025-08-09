@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import { usePathname } from 'next/navigation';
 import SocialIcons from "./SocialIcons";
 import BurgerMenu from "./BurgerMenu";
 import MobileMenu from "./MobileMenu";
@@ -10,6 +11,7 @@ import styles from './Header.module.css';
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const pathname = usePathname();
 
     // Отслеживание скролла
     useEffect(() => {
@@ -37,10 +39,12 @@ export default function Header() {
         setIsMenuOpen(false);
     };
 
+    const scrolledClass = (isScrolled || pathname !== '/') ? styles.scrolled : '';
+
     return (
         <>
             {/* Шапка */}
-            <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+            <header className={`${styles.header} ${scrolledClass}`}>
                 <div className="container">
                     <div className={styles.headerTop}>
                         <div className={styles.logo}>

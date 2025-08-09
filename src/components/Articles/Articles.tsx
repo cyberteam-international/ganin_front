@@ -18,12 +18,15 @@ function coverUrl(cover: ArticleItem['cover']) {
 export default function Articles() {
   const [articlesData, setArticlesData] = useState<ArticleItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
       try {
         const data = await getArticles();
         setArticlesData(data);
+      } catch (e: any) {
+        setError(e.message || 'Ошибка загрузки');
       } finally {
         setLoading(false);
       }
@@ -34,11 +37,12 @@ export default function Articles() {
     <section id="articles" className={`${styles.articles} ${styles['dark-section']}`}>
       <div className="container">
         <h2 className={styles['section-title']}>Статьи</h2>
-        {loading ? (
-          <div className={styles.loading}><div className={styles['loading-text']}>Загрузка...</div></div>
-        ) : articlesData.length === 0 ? (
+        {loading && <div className={styles.loading}><div className={styles['loading-text']}>Загрузка...</div></div>}
+        {!loading && error && <div className={styles.loading}><div className={styles['loading-text']}>{error}</div></div>}
+        {!loading && !error && articlesData.length === 0 && (
           <div className={styles.loading}><div className={styles['loading-text']}>Статей нет</div></div>
-        ) : (
+        )}
+        {!loading && !error && articlesData.length > 0 && (
           <Swiper
             className={styles['articles-swiper']}
             slidesPerView="auto"
