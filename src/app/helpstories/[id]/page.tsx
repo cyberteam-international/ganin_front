@@ -39,8 +39,13 @@ export default async function HelpStoryPage({ params }: PageProps) {
                 const param = o.documentId || String(o.id);
                 return (
                   <Link key={o.id} href={`/helpstories/${param}`} className={styles.otherItem}>
-                    <h4>{o.Title}</h4>
-                    {o.zavisimost && <span className={styles.tag}>{o.zavisimost}</span>}
+                    <div className={styles.otherMeta}>
+                      <div className={styles.otherAvatar}><i className="fas fa-user-circle" /></div>
+                      <div className={styles.otherText}>
+                        <h4>{o.Title}</h4>
+                        {o.zavisimost && <span className={styles.tag}>{o.zavisimost}</span>}
+                      </div>
+                    </div>
                   </Link>
                 );
               })}

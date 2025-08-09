@@ -26,6 +26,8 @@
 .otherItem .tag { align-self:flex-start; padding:4px 12px; font-size:10px; }
 .back { display:inline-block; margin-bottom:16px; color: var(--accent-color); text-decoration:none; }
 .back:hover { text-decoration:underline; }
-
+.otherMeta { display:flex; align-items:stretch; gap:12px; height:100%; }
+.otherAvatar { font-size:52px; line-height:1; color: var(--accent-color); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+.otherText { display:flex; flex-direction:column; justify-content:center; gap:6px; }
 /* Remove underline globally for links inside section */
 .page a { text-decoration:none; }
