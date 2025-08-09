@@ -1,0 +1,53 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import styles from '../HelpStories.module.css';
+import { getHelpStory, getHelpStories, storyToHtml } from '@/services/helpStories';
+
+interface PageProps { params: { id: string } }
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const story = await getHelpStory(params.id);
+  const title = story?.Title || 'История спасения';
+  const description = story?.Short_description || 'История восстановления';
+  return {
+    title,
+    description,
+    alternates: { canonical: `/helpstories/${params.id}` },
+    openGraph: { title, description, url: `/helpstories/${params.id}`, type: 'article' },
+    twitter: { card: 'summary', title, description }
+  };
+}
+
+export default async function HelpStoryPage({ params }: PageProps) {
+  const story = await getHelpStory(params.id);
+  if (!story) {
+    return <section className={styles.page}><div className="container">История не найдена</div></section>;
+  }
+  const others = (await getHelpStories()).filter(s => (s.documentId || String(s.id)) !== (story.documentId || String(story.id))).slice(0,6);
+  return (
+    <section className={styles.page}>
+      <div className="container">
+        <Link href="/helpstories" className={styles.back}>← Все истории</Link>
+        <h1 className={styles.title}>{story.Title}</h1>
+        {story.zavisimost && <div className={styles.tag}>{story.zavisimost}</div>}
+        <div className={styles.singleWrapper}>
+          <div className={styles.content} dangerouslySetInnerHTML={{ __html: storyToHtml(story) }} />
+          <aside className={styles.sidebar}>
+            <div className={styles.sidebarTitle}>Другие истории</div>
+            <div className={styles.otherList}>
+              {others.map(o => {
+                const param = o.documentId || String(o.id);
+                return (
+                  <Link key={o.id} href={`/helpstories/${param}`} className={styles.otherItem}>
+                    <h4>{o.Title}</h4>
+                    {o.zavisimost && <span className={styles.tag}>{o.zavisimost}</span>}
+                  </Link>
+                );
+              })}
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  );
+}

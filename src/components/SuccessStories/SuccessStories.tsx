@@ -101,6 +101,7 @@ export default function SuccessStories() {
                                     <i className="fas fa-user-circle"></i>
                                 </div>
                                 <h3>{story.name}</h3>
+                                <span className={styles['story-tag']}>Зависимость</span>
                                 <p>"{story.story}"</p>
                                 <button 
                                     className={styles['story-btn']}

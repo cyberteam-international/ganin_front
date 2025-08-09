@@ -20,7 +20,7 @@
 .cardTitle { font-size: 18px; font-weight: 700; color: var(--text-primary); }
 .excerpt { color: #666; font-size: 14px; line-height: 1.5; }
 .meta { font-size: 12px; color: #999; margin-top: auto; }
-.readMore { margin-top: 10px; align-self: flex-start; background: var(--accent-color); color: #fff; border: 0; padding: 10px 16px; border-radius: 8px; cursor: pointer; }
+.readMore { margin-top: 10px; align-self: flex-start; background: var(--accent-color); color: #fff; border: 0; padding: 10px 16px; border-radius: 8px; cursor: pointer; text-decoration:none; }
 
 /* Hide Read button on mobile */
 @media (max-width: 1023px) { .readMore { display: none; } }
@@ -39,3 +39,4 @@
 @media (min-width: 1024px) {
   .featured { grid-column: 1 / -1; }
 }
+.page a { text-decoration:none; }

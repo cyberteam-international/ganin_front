@@ -84,10 +84,6 @@
     background: var(--accent-color);
 }
 
-.story-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-}
 
 .story-avatar {
     font-size: 60px;
@@ -150,6 +146,26 @@
     transform: translateX(2px);
 }
 
+.story-tag {
+    /* Updated styling: ensure intrinsic width, softer background, accent text */
+    display: inline-flex;
+    margin: 0 auto;
+    text-transform: uppercase;
+    align-items: center;
+    background: rgba(44,62,80,0.08); /* soft tinted bg */
+    color: var(--accent-color);
+    padding: 5px 14px;
+    font-size: 11px;
+    border-radius: 999px;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+    font-weight: 500;
+    line-height: 1;
+    width: auto; /* avoid stretch */
+    max-width: max-content;
+    white-space: nowrap;
+}
+
 /* Адаптивные стили для карточек */
 @media (max-width: 768px) {
     .success-stories {
@@ -173,6 +189,8 @@
         font-size: 50px;
         margin-bottom: 15px;
     }
+    
+    .story-tag { font-size: 10px; padding: 5px 12px; margin-bottom: 12px; }
 }
 
 @media (max-width: 480px) {
