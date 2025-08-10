@@ -7,6 +7,7 @@ import NeuralBackground from "@/components/NeuralBackground";
 import Preloader from "@/components/Preloader";
 import ClientOnly from "@/components/ClientOnly";
 import Script from "next/script";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -45,6 +46,7 @@ export default function RootLayout({
         </ClientOnly>
         
         <Header />
+        <Breadcrumbs />
         {children}
         <Footer />
       </body>

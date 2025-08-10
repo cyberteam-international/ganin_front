@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: 'Блог',
     description: 'Статьи и материалы по психологии, зависимостям и восстановлению.',
   },
-};
+} as any;
 
 function coverUrl(cover: ArticleItem['cover']) {
   const url = cover?.formats?.medium?.url || cover?.formats?.small?.url || cover?.url;

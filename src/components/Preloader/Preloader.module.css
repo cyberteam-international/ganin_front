@@ -57,6 +57,9 @@
     display: none !important;
 }
 
+:global(body:not(.loaded) .breadcrumbs-bar) { display: none !important; }
+:global(body.loaded .breadcrumbs-bar) { display: block; }
+
 .preloader {
     position: fixed;
     top: 0;
