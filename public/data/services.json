@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "documentId": "example-service-1",
+    "title": "Кодирование от алкоголизма действенными методами",
+    "slug": "kodirovanie-ot-alkogolizma",
+    "excerpt": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni",
+    "content": "<h2>Комплексный подход к лечению алкогольной зависимости</h2><p>Кодирование от алкоголизма — это один из наиболее эффективных методов борьбы с алкогольной зависимостью. Наш подход основан на современных психотерапевтических техниках и индивидуальной работе с каждым клиентом.</p><h3>Что включает в себя процедура:</h3><ul><li>Детальная диагностика состояния пациента</li><li>Психологическая подготовка к процедуре</li><li>Индивидуальный подбор метода кодирования</li><li>Постпроцедурное сопровождение</li></ul><h3>Преимущества нашего метода:</h3><p>Мы используем только проверенные и безопасные методы, которые не наносят вреда организму. Каждый случай рассматривается индивидуально, учитывая особенности личности и историю заболевания.</p><h3>Гарантии и поддержка:</h3><p>После процедуры кодирования мы предоставляем полное сопровождение и поддержку. Регулярные консультации помогают закрепить результат и предотвратить рецидивы.</p>",
+    "image": {
+      "id": 1,
+      "url": "/images/general.png",
+      "formats": {
+        "thumbnail": { "url": "/images/general.png" },
+        "small": { "url": "/images/general.png" },
+        "medium": { "url": "/images/general.png" },
+        "large": { "url": "/images/general.png" }
+      }
+    },
+    "publishedAt": "2024-01-15T10:00:00.000Z"
+  }
+]

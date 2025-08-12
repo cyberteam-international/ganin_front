@@ -25,3 +25,7 @@ export async function fetchStrapi<T = any>(path: string, init?: RequestInit): Pr
 }
 
 export const getStrapiMediaURL = (url?: string) => (url ? buildStrapiURL(url) : '');
+
+export async function getFromStrapi<T = any>(path: string): Promise<T> {
+  return fetchStrapi<T>(path);
+}

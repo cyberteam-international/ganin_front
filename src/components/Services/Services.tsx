@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './Services.module.css';
 
 export default function Services() {
@@ -62,6 +63,13 @@ export default function Services() {
                             </ul>
                         </div>
                     </div>
+                </div>
+                
+                <div className={styles['services-link']}>
+                    <Link href="/uslugi" className={styles['all-services-btn']}>
+                        Все услуги
+                        <i className="fas fa-arrow-right"></i>
+                    </Link>
                 </div>
             </div>
         </section>

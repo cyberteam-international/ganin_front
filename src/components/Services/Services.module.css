@@ -269,3 +269,49 @@
         background-size: 10px;
     }
 }
+
+/* Ссылка на все услуги */
+.services-link {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.all-services-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: var(--border-radius-small);
+    font-size: 16px;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: var(--shadow-light);
+}
+
+.all-services-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.all-services-btn i {
+    transition: var(--transition);
+}
+
+.all-services-btn:hover i {
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .services-link {
+        margin-top: 40px;
+    }
+    
+    .all-services-btn {
+        padding: 12px 24px;
+        font-size: 15px;
+    }
+}

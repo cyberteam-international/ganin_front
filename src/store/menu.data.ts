@@ -20,6 +20,11 @@ export const MENU_ITEMS: IMenuItem[] = [
         isActive: (pathname: string) => pathname === PAGES.HOME
     },
     {
+        href: PAGES.USLUGI,
+        label: "Услуги",
+        isActive: (pathname: string) => pathname.startsWith(PAGES.USLUGI)
+    },
+    {
         href: "/consulting",
         label: "Консультирование",
         isActive: (pathname: string) => pathname.startsWith("/consulting"),

@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "title": "Диплом магистра психологии",
+    "institution": "Московский государственный университет",
+    "year": "2018",
+    "type": "diploma",
+    "description": "Магистерская степень по клинической психологии",
+    "image": {
+      "url": "/images/default-certificate.svg",
+      "formats": {
+        "large": { "url": "/images/default-certificate.svg" },
+        "medium": { "url": "/images/default-certificate.svg" },
+        "small": { "url": "/images/default-certificate.svg" }
+      }
+    }
+  },
+  {
+    "id": 2,
+    "title": "Сертификат психоаналитика",
+    "institution": "Институт психоанализа",
+    "year": "2020",
+    "type": "certificate",
+    "description": "Специализация в области психоаналитической терапии",
+    "image": {
+      "url": "/images/default-certificate.svg",
+      "formats": {
+        "large": { "url": "/images/default-certificate.svg" },
+        "medium": { "url": "/images/default-certificate.svg" },
+        "small": { "url": "/images/default-certificate.svg" }
+      }
+    }
+  },
+  {
+    "id": 3,
+    "title": "Повышение квалификации по работе с зависимостями",
+    "institution": "Центр психологической реабилитации",
+    "year": "2022",
+    "type": "course",
+    "description": "Современные методы работы с различными видами зависимостей",
+    "image": {
+      "url": "/images/default-certificate.svg",
+      "formats": {
+        "large": { "url": "/images/default-certificate.svg" },
+        "medium": { "url": "/images/default-certificate.svg" },
+        "small": { "url": "/images/default-certificate.svg" }
+      }
+    }
+  }
+]
