@@ -89,11 +89,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .serviceImage {
     width: 100%;
-    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-medium);
 }
@@ -238,6 +241,7 @@
     
     .heroImage {
         order: 1;
+        max-width: 300px;
     }
     
     .content {
@@ -271,6 +275,10 @@
     
     .heroContent {
         gap: 30px;
+    }
+    
+    .heroImage {
+        max-width: 250px;
     }
     
     .heroDescription {

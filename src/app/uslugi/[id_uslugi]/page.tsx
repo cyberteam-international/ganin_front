@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Service.module.css';
-import { getServiceBySlug, getServices, type ServiceItem, serviceImageUrl } from '@/services/services';
+import { getServiceBySlug, type ServiceItem, serviceImageUrl } from '@/services/services';
 import WhyMe from '@/components/WhyMe';
 import Education from '@/components/Education';
 import SuccessStories from '@/components/SuccessStories';
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const service = await getServiceBySlug(id_uslugi);
   const title = service?.title || 'Услуга';
   const description = service?.excerpt || 'Профессиональная психологическая помощь';
-  const ogImage = serviceImageUrl(service?.image);
+  const ogImage = serviceImageUrl();
   
   return {
     title,
@@ -70,7 +70,7 @@ export default async function ServicePage({ params }: PageProps) {
               <Image
                 src={serviceImageUrl(service.image)}
                 alt={service.title}
-                width={500}
+                width={400}
                 height={400}
                 className={styles.serviceImage}
               />

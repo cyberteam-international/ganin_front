@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Services.module.css';
-import { getServices, type ServiceItem, serviceImageUrl } from '@/services/services';
+import { getMainServices, getSubServices, serviceImageUrl, type MainService, type SubService } from '@/services/services';
 
 export const metadata: Metadata = {
   title: 'Услуги',
@@ -22,9 +22,23 @@ export const metadata: Metadata = {
 } as any;
 
 export default async function ServicesPage() {
-  const services = await getServices();
+  const [mainServices, subServices] = await Promise.all([
+    getMainServices(),
+    getSubServices()
+  ]);
   
-  if (!services.length) {
+  // Группируем подуслуги по основным услугам (можно добавить связь через service_id в будущем)
+  // Пока используем простое распределение по порядку
+  const servicesWithSubs = mainServices.map((service, index) => {
+    const startIndex = index * Math.ceil(subServices.length / mainServices.length);
+    const endIndex = startIndex + Math.ceil(subServices.length / mainServices.length);
+    return {
+      ...service,
+      sub_services: subServices.slice(startIndex, endIndex)
+    };
+  });
+
+  if (!mainServices.length) {
     return (
       <section className={styles.page}>
         <div className="container">
@@ -46,31 +60,40 @@ export default async function ServicesPage() {
         </p>
 
         <div className={styles.servicesGrid}>
-          {services.map((service) => {
-            const serviceParam = service.documentId || String(service.id);
-            return (
-              <article key={service.id} className={styles.serviceCard}>
-                <Link href={`/uslugi/${service.slug}`} className={styles.serviceLink}>
-                  <div className={styles.imageWrapper}>
-                    <Image
-                      src={serviceImageUrl(service.image)}
-                      alt={service.title}
-                      width={400}
-                      height={240}
-                      className={styles.serviceImage}
-                    />
-                  </div>
-                  <div className={styles.serviceContent}>
-                    <h2 className={styles.serviceTitle}>{service.title}</h2>
-                    <p className={styles.serviceExcerpt}>{service.excerpt}</p>
-                    <div className={styles.readMore}>
-                      Подробнее <i className="fas fa-arrow-right"></i>
-                    </div>
-                  </div>
-                </Link>
-              </article>
-            );
-          })}
+          {servicesWithSubs.map((service) => (
+            <div key={service.id} className={styles.serviceCard}>
+              <div className={styles.serviceIcon}>
+                <i className={service.icon}></i>
+              </div>
+              <div className={styles.serviceContent}>
+                <h3>
+                  <Link href={`/uslugi/${service.slug}`} className={styles.serviceTitle}>
+                    {service.title}
+                    <i className="fas fa-arrow-right"></i>
+                  </Link>
+                </h3>
+                <ul>
+                  {service.sub_services.map((subService) => (
+                    <li key={subService.id}>
+                      <Link href={`/uslugi/${subService.slug}`}>
+                        {subService.image && (
+                          <div className={styles.subServiceImage}>
+                            <Image
+                              src={serviceImageUrl(subService.image)}
+                              alt={subService.title}
+                              width={40}
+                              height={40}
+                            />
+                          </div>
+                        )}
+                        <span>{subService.title}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
