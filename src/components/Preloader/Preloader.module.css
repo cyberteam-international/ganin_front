@@ -2,64 +2,6 @@
    СТИЛИ ПРЕЛОАДЕРА
    =============== */
 
-/* Скрываем весь контент кроме прелоадера до завершения загрузки */
-:global(body:not(.loaded) .header),
-:global(body:not(.loaded) .hero),
-:global(body:not(.loaded) .additional-info),
-:global(body:not(.loaded) .services),
-:global(body:not(.loaded) .why-me),
-:global(body:not(.loaded) .education),
-:global(body:not(.loaded) .articles),
-:global(body:not(.loaded) .success-stories),
-:global(body:not(.loaded) .footer),
-:global(body:not(.loaded) main),
-:global(body:not(.loaded) .not-found-container) {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-/* Плавное появление контента после загрузки */
-:global(body.loaded .header),
-:global(body.loaded .hero),
-:global(body.loaded .additional-info),
-:global(body.loaded .services),
-:global(body.loaded .why-me),
-:global(body.loaded .education),
-:global(body.loaded .articles),
-:global(body.loaded .success-stories),
-:global(body.loaded .footer),
-:global(body.loaded main),
-:global(body.loaded .not-found-container) {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-
-/* Скрываем глобальный нейронный фон до завершения загрузки */
-:global(body:not(.loaded) #globalNeuralCanvas) {
-    opacity: 0;
-    visibility: hidden;
-}
-
-:global(body.loaded #globalNeuralCanvas) {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-
-/* Дополнительно скрываем основной контент на время загрузки */
-:global(body:not(.loaded) main),
-:global(body:not(.loaded) section:not(.preloader)),
-:global(body:not(.loaded) header:not(.preloader *)),
-:global(body:not(.loaded) footer) {
-    display: none !important;
-}
-
-:global(body:not(.loaded) .breadcrumbs-bar) { display: none !important; }
-:global(body.loaded .breadcrumbs-bar) { display: block; }
-
 .preloader {
     position: fixed;
     top: 0;

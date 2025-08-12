@@ -179,3 +179,146 @@ html {
 .swiper-horizontal { touch-action: pan-y; }
 .swiper-vertical { touch-action: pan-x; }
 .swiper-wrapper { will-change: transform; }
+
+/* ===============
+   СТИЛИ ПРЕЛОАДЕРА
+   =============== */
+
+/* Скрываем весь контент кроме прелоадера до завершения загрузки */
+body:not(.loaded) .header,
+body:not(.loaded) .hero,
+body:not(.loaded) .additional-info,
+body:not(.loaded) .services,
+body:not(.loaded) .why-me,
+body:not(.loaded) .education,
+body:not(.loaded) .articles,
+body:not(.loaded) .success-stories,
+body:not(.loaded) .footer,
+body:not(.loaded) main,
+body:not(.loaded) .not-found-container {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Плавное появление контента после загрузки */
+body.loaded .header,
+body.loaded .hero,
+body.loaded .additional-info,
+body.loaded .services,
+body.loaded .why-me,
+body.loaded .education,
+body.loaded .articles,
+body.loaded .success-stories,
+body.loaded .footer,
+body.loaded main,
+body.loaded .not-found-container {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+/* Скрываем глобальный нейронный фон до завершения загрузки */
+body:not(.loaded) #globalNeuralCanvas {
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.loaded #globalNeuralCanvas {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+/* Дополнительно скрываем основной контент на время загрузки */
+body:not(.loaded) main,
+body:not(.loaded) section:not(.preloader),
+body:not(.loaded) header:not(.preloader *),
+body:not(.loaded) footer {
+    display: none !important;
+}
+
+body:not(.loaded) .breadcrumbs-bar { 
+    display: none !important; 
+}
+
+body.loaded .breadcrumbs-bar { 
+    display: block; 
+}
+
+/* ===============
+   СТИЛИ HERO КНОПКИ
+   =============== */
+
+/* Стили для hero кнопки */
+.hero-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-light);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.hero-button:hover::before {
+    left: 100%;
+}
+
+.hero-button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-heavy);
+    background: var(--primary-dark);
+}
+
+.hero-button:active {
+    transform: translateY(0);
+}
+
+.arrow-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.arrow-circle i {
+    transform: rotate(-45deg);
+    font-size: 12px;
+    transition: var(--transition);
+}
+
+.hero-button:hover .arrow-circle {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.hero-button:hover .arrow-circle i {
+    transform: rotate(0deg);
+}
