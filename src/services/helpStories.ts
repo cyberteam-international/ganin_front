@@ -18,7 +18,7 @@ interface StrapiSingleResponse<T> { data: T; meta?: any }
 const blocksToHtml = (blocks: any[]): string => {
   if (!Array.isArray(blocks)) return '';
   const esc = (s: string) => s.replace(/[&<>"]+/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]!));
-  const renderChildren = (children: any[]) => children?.map((n:any)=>('text'in n?esc(n.text): (n.children?renderChildren(n.children):''))).join('')||'';
+  const renderChildren = (children: any[]): string => children?.map((n:any)=>('text'in n?esc(n.text): (n.children?renderChildren(n.children):''))).join('')||'';
   return blocks.map(node=>{
     if (node.type==='paragraph') return `<p>${renderChildren(node.children)}</p>`;
     if (node.type==='heading') { const lvl=Math.min(Math.max(node.level||2,1),6); return `<h${lvl}>${renderChildren(node.children)}</h${lvl}>`; }

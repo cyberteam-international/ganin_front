@@ -40,7 +40,7 @@ function blocksToHtml(blocks: any[]): string {
     const bold = node.bold ? `<strong>${txt}</strong>` : txt;
     return node.italic ? `<em>${bold}</em>` : bold;
   };
-  const renderChildren = (children: any[]) => children?.map((ch: any) => (ch.type === 'text' || 'text' in ch ? renderText(ch) : '')).join('') ?? '';
+  const renderChildren = (children: any[]): string => children?.map((ch: any) => (ch.type === 'text' || 'text' in ch ? renderText(ch) : '')).join('') ?? '';
   const renderNode = (node: any): string => {
     switch (node.type) {
       case 'heading': {
