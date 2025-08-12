@@ -45,7 +45,7 @@ export default async function HelpStoryPage({ params }: PageProps) {
                         <h4>{o.Title}</h4>
                         {o.zavisimost && <span className={styles.tag}>{o.zavisimost}</span>}
                       </div>
-                    </div>
+                    </div> 
                   </Link>
                 );
               })}
