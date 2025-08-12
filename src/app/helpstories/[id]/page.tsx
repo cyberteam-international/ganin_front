@@ -3,23 +3,25 @@ import Link from 'next/link';
 import styles from '../HelpStories.module.css';
 import { getHelpStory, getHelpStories, storyToHtml } from '@/services/helpStories';
 
-interface PageProps { params: { id: string } }
+interface PageProps { params: Promise<{ id: string }> }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const story = await getHelpStory(params.id);
+  const { id } = await params;
+  const story = await getHelpStory(id);
   const title = story?.Title || 'История спасения';
   const description = story?.Short_description || 'История восстановления';
   return {
     title,
     description,
-    alternates: { canonical: `/helpstories/${params.id}` },
-    openGraph: { title, description, url: `/helpstories/${params.id}`, type: 'article' },
+    alternates: { canonical: `/helpstories/${id}` },
+    openGraph: { title, description, url: `/helpstories/${id}`, type: 'article' },
     twitter: { card: 'summary', title, description }
   };
 }
 
 export default async function HelpStoryPage({ params }: PageProps) {
-  const story = await getHelpStory(params.id);
+  const { id } = await params;
+  const story = await getHelpStory(id);
   if (!story) {
     return <section className={styles.page}><div className="container">История не найдена</div></section>;
   }

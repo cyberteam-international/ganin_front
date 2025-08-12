@@ -10,24 +10,26 @@ function coverUrl(cover: ArticleItem['cover']) {
   return url ? buildStrapiURL(url) : '/images/default-article.svg';
 }
 
-type PageProps = { params: { slug: string } };
+type PageProps = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const a = await getArticleBySlug(params.slug);
+  const { slug } = await params;
+  const a = await getArticleBySlug(slug);
   const title = a?.title || 'Статья';
   const description = a?.excerpt || 'Статья блога';
   const ogImage = coverUrl(a?.cover);
   return {
     title,
     description,
-    alternates: { canonical: `/blog/${params.slug}` },
-    openGraph: { title, description, url: `/blog/${params.slug}`, type: 'article', images: ogImage ? [{ url: ogImage }] : undefined },
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: { title, description, url: `/blog/${slug}`, type: 'article', images: ogImage ? [{ url: ogImage }] : undefined },
     twitter: { card: 'summary_large_image', title, description, images: ogImage ? [ogImage] : undefined },
   };
 }
 
 export default async function ArticlePage({ params }: PageProps) {
-  const article = await getArticleBySlug(params.slug);
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
   if (!article) {
     return (
       <section className={styles.page}>
