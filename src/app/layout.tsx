@@ -41,9 +41,7 @@ export default function RootLayout({
         </ClientOnly>
         
         {/* Прелоадер */}
-        <ClientOnly>
-          <Preloader />
-        </ClientOnly>
+        <Preloader />
         
         <Header />
         <Breadcrumbs />
