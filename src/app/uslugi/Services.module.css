@@ -97,8 +97,8 @@
     min-width: 0;
 }
 
-/* Заголовок услуги */
-.serviceContent h3 {
+/* Заголовок услуги - как на главной странице */
+.serviceCard h3 {
     font-size: 28px;
     font-weight: 700;
     color: #2c3e50;
@@ -122,11 +122,8 @@
     transition: var(--transition);
 }
 
-.serviceTitle:hover {
-    opacity: 0.8;
-}
 
-/* Стилизация Font Awesome иконки в заголовке */
+/* Стилизация Font Awesome иконки в заголовке - как на главной странице */
 .serviceCard h3 :global(.fas.fa-arrow-right) {
     width: 28px;
     height: 28px;
@@ -135,14 +132,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    color: #2c3e50;
+    font-size: 12px;
+    flex-shrink: 0;
     -webkit-text-fill-color: #2c3e50;
     transition: all 0.3s ease;
+    transform: rotate(-45deg);
 }
 
-.serviceCard:hover h3 :global(.fas.fa-arrow-right) {
-    background: rgba(44, 62, 80, 0.2);
-    transform: translateX(5px);
+.serviceCard h3:hover :global(.fas.fa-arrow-right) {
+    transform: rotate(0);
+    cursor: pointer;
+    background: var(--primary-dark);
+    color: white;
+    -webkit-text-fill-color: white;
 }
 
 /* Изображения подуслуг */
@@ -160,112 +163,146 @@
     object-fit: cover;
 }
 
-/* Список подуслуг */
+/* Список подуслуг - как на главной странице */
 .serviceContent ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px 30px;
+    margin: 0;
+    padding: 0;
 }
 
 .serviceContent li {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    overflow: hidden;
     margin: 0;
 }
 
 .serviceContent li a {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 15px 20px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(44, 62, 80, 0.1);
-    border-radius: 12px;
-    color: #2c3e50;
+    justify-content: space-between;
+    padding: 15px 40px 15px 25px;
+    color: #555;
     text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.6;
     transition: all 0.3s ease;
     position: relative;
+    gap: 12px;
 }
 
-.serviceContent li a:hover {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: rgba(44, 62, 80, 0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.serviceContent li a .subServiceImage {
+    margin-right: 0;
+}
+
+.serviceContent li a span {
+    flex: 1;
 }
 
 .serviceContent li a::after {
     content: '';
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
     width: 24px;
     height: 24px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23666'%3E%3Cpath d='M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z'/%3E%3C/svg%3E") no-repeat center;
-    background-size: 12px;
-    opacity: 0.6;
+    background: rgba(44, 62, 80, 0.1);
+    border-radius: 50%;
+    flex-shrink: 0;
     transition: all 0.3s ease;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%232c3e50' viewBox='0 0 24 24'%3E%3Cpath d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z'/%3E%3C/svg%3E");
+    background-size: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translateX(-5px);
 }
 
-.serviceContent li a:hover::after {
-    opacity: 1;
-    transform: translateY(-50%) translateX(5px);
+.serviceContent li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.95);
+    border-left-color: var(--primary-dark);
 }
 
-/* Адаптивность */
-@media (max-width: 1024px) {
+.serviceContent li:hover a {
+    color: #333;
+    padding-right: 10px;
+}
+
+.serviceContent li:hover a::after {
+    background: var(--accent-color);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z'/%3E%3C/svg%3E");
+    transform: translateX(0);
+}
+
+/* Адаптивность - как на главной странице */
+
+/* Адаптивные стили для планшетов */
+@media (max-width: 1024px) and (min-width: 769px) {
     .serviceCard {
-        padding: 40px 30px;
+        grid-template-columns: auto 1fr;
         gap: 30px;
+        text-align: left;
     }
     
-    .serviceIcon {
-        width: 80px;
-        height: 80px;
-        font-size: 36px;
-    }
-    
-    .serviceCard h3 {
-        font-size: 24px;
-    }
-    
-    .serviceContent ul {
+    .serviceCard ul {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 12px 20px;
+    }
+    
+    .serviceContent li a::after {
+        width: 22px;
+        height: 22px;
+        background-size: 11px;
     }
 }
 
+/* Мобильные устройства */
 @media (max-width: 768px) {
     .page {
-        padding: 100px 0 60px;
+        padding: 80px 0;
     }
-    
+
+    .title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+}
+
+/* Мобильные телефоны */
+@media (max-width: 480px) {
+    .page {
+        padding: 80px 0;
+    }
+
     .serviceCard {
+        padding: 30px 20px;
         grid-template-columns: 1fr;
-        gap: 25px;
-        padding: 35px 25px;
+        gap: 20px;
         text-align: center;
     }
     
     .serviceIcon {
         width: 70px;
         height: 70px;
-        font-size: 32px;
+        font-size: 30px;
         margin: 0 auto;
     }
     
     .serviceCard h3 {
-        font-size: 22px;
         justify-content: center;
-        margin-bottom: 25px;
+        font-size: 24px;
+        width: 277px;
+        margin: 0 auto;
+        margin-bottom: 20px;
     }
     
     .serviceContent ul {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 10px;
     }
     
     .serviceContent li a {
@@ -274,34 +311,9 @@
         text-align: left;
     }
     
-    .subtitle {
-        margin-bottom: 40px;
-        padding: 0 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .serviceCard {
-        margin: 0 10px;
-        padding: 30px 20px;
-    }
-    
-    .serviceIcon {
-        width: 60px;
-        height: 60px;
-        font-size: 28px;
-    }
-    
-    .serviceCard h3 {
-        font-size: 20px;
-    }
-    
-    .serviceContent li a {
-        padding: 10px 12px 10px 30px;
-        font-size: 13px;
-    }
-    
-    .serviceContent li a::before {
-        left: 12px;
+    .serviceContent li a::after {
+        width: 20px;
+        height: 20px;
+        background-size: 10px;
     }
 }
