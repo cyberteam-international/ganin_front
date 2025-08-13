@@ -26,8 +26,12 @@ export default async function HelpStoriesPage() {
               const param = s.documentId || String(s.id);
               return (
                 <article key={s.id} className={successStyles['story-card']}>
-                  <div className={successStyles['story-avatar']}><i className="fas fa-user-circle"></i></div>
-                  <h3>{s.Title}</h3>
+                  <Link href={`/helpstories/${param}`} className={successStyles['story-avatar']}>
+                    <i className="fas fa-user-circle"></i>
+                  </Link>
+                  <Link href={`/helpstories/${param}`}>
+                    <h3>{s.Title}</h3>
+                  </Link>
                   {s.zavisimost && <span className={successStyles['story-tag']}>{s.zavisimost}</span>}
                   {s.Short_description && <p>"{s.Short_description}"</p>}
                   <Link href={`/helpstories/${param}`} className={successStyles['story-btn']}>
