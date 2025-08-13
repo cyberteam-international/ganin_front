@@ -48,7 +48,7 @@ export default function Articles() {
             slidesPerView="auto"
             spaceBetween={30}
             centeredSlides={false}
-            loop={articlesData.length > 2}
+            loop={articlesData.length > 3}
             speed={600}
             allowTouchMove={true}
             watchOverflow={true}

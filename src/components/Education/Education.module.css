@@ -9,6 +9,10 @@
     overflow: hidden;
 }
 
+.education :global(.container) {
+    padding: 0px !important;
+}
+
 .section-title {
     font-size: clamp(32px, 6vw, 48px);
     font-weight: 800;
@@ -32,32 +36,14 @@
 }
 
 .swiper-slide {
-    width: 350px !important;
+    /* width: 350px !important; */
     height: auto;
     display: flex;
     flex-shrink: 0;
 }
 
 /* Адаптивная ширина слайдов для образования */
-@media (min-width: 1024px) {
-    .swiper-slide {
-        width: calc((100% - 60px) / 3) !important;
-        max-width: calc((100% - 60px) / 3);
-        flex: 0 0 calc((100% - 60px) / 3);
-    }
-}
 
-@media (max-width: 768px) {
-    .swiper-slide {
-        width: 280px !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .swiper-slide {
-        width: 260px !important;
-    }
-}
 
 /* Карточки образования в стиле story-card */
 .education-card {
@@ -169,6 +155,10 @@
 
 /* Адаптивные стили для карточек */
 @media (max-width: 768px) {
+    .education :global(.container) {
+        padding: 0px !important;
+    }
+    
     .education-card {
         padding: 30px 20px;
     }
@@ -184,9 +174,15 @@
     .cert-image {
         height: 140px !important;
     }
+
+    
 }
 
 @media (max-width: 480px) {
+    .education .container {
+        padding: 0px !important;
+    }
+    
     .education-card {
         padding: 25px 15px;
     }

@@ -1,6 +1,13 @@
-.page { padding: 100px 0; }
+.page { padding: 40px 0; }
 .title { font-size: clamp(32px,6vw,48px); font-weight: 800; text-align: left; margin-bottom: 40px; color: var(--text-primary); }
 .grid { display: grid; gap: 30px; grid-template-columns: 1fr; }
+
+/* Мобильная версия sidebar - без рамки */
+.sidebar{
+    border-left: none;
+    padding: 0;
+}
+
 @media (min-width:1024px){ .grid { grid-template-columns: repeat(3,1fr); } }
 .card { background:#f8f9fa; border:1px solid #e9ecef; padding:40px 30px; border-radius: var(--border-radius); text-align:center; transition:.3s ease; box-shadow:0 4px 20px rgba(0,0,0,.08); position:relative; overflow:hidden; display:flex; flex-direction:column; }
 .card::before { content:''; position:absolute; top:0; left:0; right:0; height:5px; background:var(--accent-color); }
@@ -17,7 +24,10 @@
 .content h1,.content h2,.content h3 { text-align:left; }
 .content h2, .content h3 { margin-top:28px; }
 .content p { margin:16px 0; }
-.sidebar { border-left:1px solid #e9ecef; padding-left:24px; }
+/* Десктопная версия sidebar - с рамкой */
+@media (min-width:1024px){
+    .sidebar { border-left:1px solid #e9ecef; padding-left:24px; }
+}
 .sidebarTitle { font-weight:700; margin-bottom:12px; }
 .otherList { display:grid; gap:12px; }
 .otherItem { background:#f8f9fa; border:1px solid #e9ecef; padding:14px 16px 12px; border-radius:16px; display:flex; flex-direction:column; gap:8px; position:relative; text-decoration:none; transition:.25s ease; }
@@ -31,3 +41,5 @@
 .otherText { display:flex; flex-direction:column; justify-content:center; gap:6px; }
 /* Remove underline globally for links inside section */
 .page a { text-decoration:none; }
+
+

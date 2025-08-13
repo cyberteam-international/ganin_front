@@ -68,12 +68,12 @@ export default function SuccessStories() {
                         320: {
                             slidesPerView: 1.2,
                             spaceBetween: 15,
-                            centeredSlides: false,
+                            centeredSlides: true,
                         },
                         768: {
                             slidesPerView: 2.2,
                             spaceBetween: 25,
-                            centeredSlides: false,
+                            centeredSlides: true,
                         },
                         1024: {
                             slidesPerView: 3,

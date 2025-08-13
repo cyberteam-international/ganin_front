@@ -8,6 +8,10 @@
     overflow: hidden;
 }
 
+.success-stories :global(.container) {
+    padding: 0px !important;
+}
+
 .section-title {
     font-size: clamp(32px, 6vw, 48px);
     font-weight: 800;
@@ -31,32 +35,12 @@
 }
 
 .swiper-slide {
-    width: 350px !important;
     height: auto;
     display: flex;
     flex-shrink: 0;
 }
 
-/* Адаптивная ширина слайдов для историй */
-@media (min-width: 1024px) {
-    .swiper-slide {
-        width: calc((100% - 60px) / 3) !important;
-        max-width: calc((100% - 60px) / 3);
-        flex: 0 0 calc((100% - 60px) / 3);
-    }
-}
-
-@media (max-width: 768px) {
-    .swiper-slide {
-        width: 280px !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .swiper-slide {
-        width: 260px !important;
-    }
-}
+/* Удалены фиксированные ширины для работы с настройками Swiper */
 
 .story-card {
     background: #f8f9fa;
@@ -186,6 +170,10 @@
         padding: 60px 0;
     }
     
+    .success-stories :global(.container) {
+        padding: 0px !important;
+    }
+    
     .story-card {
         padding: 30px 20px;
     }
@@ -210,6 +198,10 @@
 @media (max-width: 480px) {
     .success-stories {
         padding: 40px 0;
+    }
+    
+    .success-stories :global(.container) {
+        padding: 0px !important;
     }
     
     .story-card {
