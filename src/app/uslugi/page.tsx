@@ -2,29 +2,24 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Services.module.css';
-import { getMainServices, getSubServices, getMainServiceUrl, getSubServiceUrl, serviceImageUrl, type MainService, type SubService } from '@/services/services';
+import { getMainServicesWithSubs, getMainServiceUrl, getSubServiceUrl, serviceImageUrl, type MainService, type SubService } from '@/services/services';
 import { generateMetadata as generateMeta, pageConfigs } from '@/lib/metadata';
 
 export const metadata: Metadata = generateMeta(pageConfigs.services);
 
 export default async function ServicesPage() {
-  const [mainServices, subServices] = await Promise.all([
-    getMainServices(),
-    getSubServices()
-  ]);
+  const servicesWithSubs = await getMainServicesWithSubs();
   
-  // Группируем подуслуги по основным услугам (можно добавить связь через service_id в будущем)
-  // Пока используем простое распределение по порядку
-  const servicesWithSubs = mainServices.map((service, index) => {
-    const startIndex = index * Math.ceil(subServices.length / mainServices.length);
-    const endIndex = startIndex + Math.ceil(subServices.length / mainServices.length);
-    return {
-      ...service,
-      sub_services: subServices.slice(startIndex, endIndex)
-    };
-  });
+  console.log('=== SERVICES PAGE DEBUG ===');
+  console.log('Services with sub-services:', servicesWithSubs);
+  console.log('Services summary:', servicesWithSubs.map(s => ({ 
+    id: s.id, 
+    title: s.title, 
+    subServicesCount: s.sub_services.length,
+    subServices: s.sub_services.map(sub => ({ id: sub.id, title: sub.title }))
+  })));
 
-  if (!mainServices.length) {
+  if (!servicesWithSubs.length) {
     return (
       <section className={styles.page}>
         <div className="container">

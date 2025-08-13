@@ -58,6 +58,7 @@ export interface SubService {
   excerpt?: string;
   content?: string;
   seoURL?: string;
+  service_id?: number; // ID основной услуги
   image?: {
     id: number;
     url: string;
@@ -74,6 +75,7 @@ export interface MainService {
   id: number;
   title: string;
   icon: string;
+  font_awesome_icon_css_classes?: string;
   slug?: string;
   seoURL?: string;
   sub_services: SubService[];
@@ -111,35 +113,75 @@ export async function getMainServices(): Promise<MainService[]> {
       title: service.title || service.Title,
       slug: service.slug || service.Slug || String(service.id),
       seoURL: service.seoURL,
-      icon: service.icon || service.Icon || "fas fa-cog",
+      icon: service.font_awesome_icon_css_classes || service.icon || service.Icon || "fas fa-cog",
+      font_awesome_icon_css_classes: service.font_awesome_icon_css_classes,
       sub_services: [] // Подуслуги загружаются отдельно
     })) || [];
   } catch (error) {
     console.error('Error fetching services:', error);
-    // Fallback к статическим данным
-    return [
-      {
-        id: 1,
-        title: "Консультирование",
-        slug: "konsultirovanie",
-        icon: "fas fa-comments",
-        sub_services: []
-      },
-      {
-        id: 2,
-        title: "Психотерапия",
-        slug: "psihoterapiya", 
-        icon: "fas fa-heart",
-        sub_services: []
-      },
-      {
-        id: 3,
-        title: "Зависимость / Cозависимость",
-        slug: "zavisimost",
-        icon: "fas fa-hands-helping",
-        sub_services: []
-      }
-    ];
+    return [];
+  }
+}
+
+export async function getMainServicesWithSubs(): Promise<MainService[]> {
+  try {
+    // Попробуем несколько вариантов populate
+    console.log('Trying to fetch services with sub-services...');
+    
+    let services;
+    try {
+      console.log('Attempt 1: /api/services?populate=sub_services');
+      services = await getFromStrapi<{ data: any[] }>('/api/services?populate=sub_services');
+    } catch (error) {
+      console.log('Attempt 1 failed, trying with populate[sub_services]=*');
+      services = await getFromStrapi<{ data: any[] }>('/api/services?populate[sub_services]=*');
+    }
+    
+    console.log('Services response:', services);
+    
+    if (!services?.data) {
+      console.log('No services data received');
+      return [];
+    }
+    
+    return services.data.map((service: any) => {
+      console.log('Processing service:', service);
+      console.log('Service sub_services field:', service.sub_services);
+      
+      // Проверяем разные возможные структуры для sub_services
+      let subServicesData = service.sub_services?.data || service.sub_services || [];
+      console.log('Sub-services data for service', service.id, ':', subServicesData);
+      
+      // Обрабатываем подуслуги если они есть
+      const subServices = Array.isArray(subServicesData) ? subServicesData.map((subService: any) => {
+        console.log('Processing sub-service:', subService);
+        return {
+          id: subService.id,
+          title: subService.title || subService.Title,
+          slug: subService.slug || subService.Slug || String(subService.id),
+          seoURL: subService.seoURL,
+          service_id: service.id, // Связь уже установлена через populate
+          excerpt: subService.excerpt || subService.Excerpt || subService.description || subService.Description || '',
+          content: subService.content || subService.Content || '',
+          image: subService.image || subService.Image || subService.Thumbnail
+        };
+      }) : [];
+      
+      console.log(`Service "${service.title}" (ID: ${service.id}) has ${subServices.length} sub-services:`, subServices);
+      
+      return {
+        id: service.id,
+        title: service.title || service.Title,
+        slug: service.slug || service.Slug || String(service.id),
+        seoURL: service.seoURL,
+        icon: service.font_awesome_icon_css_classes || service.icon || service.Icon || "fas fa-cog",
+        font_awesome_icon_css_classes: service.font_awesome_icon_css_classes,
+        sub_services: subServices
+      };
+    }) || [];
+  } catch (error) {
+    console.error('Error fetching services with subs:', error);
+    return [];
   }
 }
 
@@ -171,11 +213,26 @@ export async function getSubServices(): Promise<SubService[]> {
       // Используем ID как slug если нет slug поля
       const slug = subService.slug || subService.Slug || String(subService.id);
       
+      // Получаем service_id из разных возможных мест
+      const serviceId = subService.service?.data?.id || 
+                       subService.service_id || 
+                       subService.Service?.id ||
+                       subService.service?.id ||
+                       null;
+      
+      console.log('Sub-service mapping:', {
+        id: subService.id,
+        title: subService.title || subService.Title,
+        service_id: serviceId,
+        rawService: subService.service
+      });
+      
       return {
         id: subService.id,
         title: subService.title || subService.Title,
         slug: slug,
         seoURL: subService.seoURL,
+        service_id: serviceId,
         excerpt: excerpt,
         content: content,
         image: subService.image || subService.Image || subService.Thumbnail
@@ -183,17 +240,7 @@ export async function getSubServices(): Promise<SubService[]> {
     }) || [];
   } catch (error) {
     console.error('Error fetching sub-services:', error);
-    // Fallback для тестирования - возвращаем статическую подуслугу
-    return [
-      {
-        id: 1,
-        title: 'Кодирование от алкоголизма действенными методами',
-        slug: 'kodirovanie-ot-alkogolizma',
-        excerpt: 'Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium',
-        content: 'Эффективные методы кодирования от алкогольной зависимости',
-        image: undefined
-      }
-    ];
+    return [];
   }
 }
 
