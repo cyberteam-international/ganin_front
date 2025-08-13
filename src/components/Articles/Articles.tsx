@@ -6,7 +6,7 @@ import Link from 'next/link';
 // Import Swiper styles
 import 'swiper/css';
 import styles from './Articles.module.css';
-import { getArticles, type ArticleItem } from '@/services/blog';
+import { getArticles, getArticleUrl, type ArticleItem } from '@/services/blog';
 import { useEffect, useState } from 'react';
 import { buildStrapiURL } from '@/lib/strapi';
 
@@ -60,7 +60,7 @@ export default function Articles() {
             }}
           >
             {articlesData.map((article) => {
-              const param = article.documentId || String(article.id);
+              const param = getArticleUrl(article);
               return (
                 <SwiperSlide key={article.id} className={styles['swiper-slide']}>
                   <Link href={`/blog/${param}`} className={styles['article-card']}>

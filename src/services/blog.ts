@@ -18,6 +18,7 @@ export interface ArticleItem {
   content?: string;
   cover?: ArticleCover;
   publishedAt?: string;
+  seoURL?: string;
   documentId?: string;
 }
 
@@ -89,6 +90,7 @@ function mapArticle(a: any): ArticleItem {
     id,
     title,
     slug,
+    seoURL: base?.seoURL,
     excerpt,
     content,
     cover,
@@ -106,6 +108,13 @@ export async function getArticles(): Promise<ArticleItem[]> {
 export async function getArticleBySlug(param: string): Promise<ArticleItem | null> {
   const raw = (param ?? '').toString();
   const p = decodeURIComponent(raw).trim();
+  
+  try {
+    // Try by seoURL first
+    const bySeoUrl = await fetchStrapi<StrapiCollectionResponse<any>>(`/api/articles?filters[seoURL][$eq]=${encodeURIComponent(p)}&populate=cover`);
+    if (bySeoUrl?.data?.[0]) return mapArticle(bySeoUrl.data[0]);
+  } catch {}
+  
   try {
     // Try /articles/:id or /articles/:documentId
     const single = await fetchStrapi<StrapiSingleResponse<any>>(`/api/articles/${encodeURIComponent(p)}?populate=cover`);
@@ -138,4 +147,8 @@ export async function getArticleBySlug(param: string): Promise<ArticleItem | nul
   } catch {}
 
   return null;
+}
+
+export function getArticleUrl(article: ArticleItem): string {
+  return article.seoURL || article.documentId || String(article.id);
 }

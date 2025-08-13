@@ -57,6 +57,7 @@ export interface SubService {
   slug: string;
   excerpt?: string;
   content?: string;
+  seoURL?: string;
   image?: {
     id: number;
     url: string;
@@ -74,6 +75,7 @@ export interface MainService {
   title: string;
   icon: string;
   slug?: string;
+  seoURL?: string;
   sub_services: SubService[];
 }
 
@@ -84,6 +86,7 @@ export interface ServiceItem {
   slug: string;
   excerpt: string;
   content: string;
+  seoURL?: string;
   image?: {
     id: number;
     url: string;
@@ -107,6 +110,7 @@ export async function getMainServices(): Promise<MainService[]> {
       id: service.id,
       title: service.title || service.Title,
       slug: service.slug || service.Slug || String(service.id),
+      seoURL: service.seoURL,
       icon: service.icon || service.Icon || "fas fa-cog",
       sub_services: [] // Подуслуги загружаются отдельно
     })) || [];
@@ -171,6 +175,7 @@ export async function getSubServices(): Promise<SubService[]> {
         id: subService.id,
         title: subService.title || subService.Title,
         slug: slug,
+        seoURL: subService.seoURL,
         excerpt: excerpt,
         content: content,
         image: subService.image || subService.Image || subService.Thumbnail
@@ -201,7 +206,7 @@ export async function getServiceBySlug(slug: string): Promise<ServiceItem | null
       console.log('Searching in sub-services...');
       const subServicesResponse = await getFromStrapi<{ data: any[] }>('/api/sub-services?populate=*');
       const subService = subServicesResponse?.data?.find(s => 
-        s.slug === slug || s.Slug === slug || String(s.id) === slug
+        s.seoURL === slug || s.slug === slug || s.Slug === slug || String(s.id) === slug
       );
       
       if (subService) {
@@ -228,6 +233,7 @@ export async function getServiceBySlug(slug: string): Promise<ServiceItem | null
           documentId: subService.documentId,
           title: subService.title || subService.Title,
           slug: subService.slug || subService.Slug || String(subService.id),
+          seoURL: subService.seoURL,
           excerpt: excerpt,
           content: content,
           image: subService.image || subService.Image || subService.Thumbnail,
@@ -243,7 +249,7 @@ export async function getServiceBySlug(slug: string): Promise<ServiceItem | null
       console.log('Searching in main services...');
       const servicesResponse = await getFromStrapi<{ data: any[] }>('/api/services?populate=*');
       const service = servicesResponse?.data?.find(s => 
-        s.slug === slug || s.Slug === slug || String(s.id) === slug
+        s.seoURL === slug || s.slug === slug || s.Slug === slug || String(s.id) === slug
       );
       
       if (service) {
@@ -270,6 +276,7 @@ export async function getServiceBySlug(slug: string): Promise<ServiceItem | null
           documentId: service.documentId,
           title: service.title || service.Title,
           slug: service.slug || service.Slug || String(service.id),
+          seoURL: service.seoURL,
           excerpt: excerpt,
           content: content,
           image: service.image || service.Image || service.Thumbnail,
@@ -304,4 +311,16 @@ export async function getServiceBySlug(slug: string): Promise<ServiceItem | null
 
 export function serviceImageUrl(image?: ServiceItem['image']) {
   return getImageUrl(image);
+}
+
+export function getServiceUrl(service: ServiceItem): string {
+  return service.seoURL || service.slug || service.documentId || String(service.id);
+}
+
+export function getMainServiceUrl(service: MainService): string {
+  return service.seoURL || service.slug || String(service.id);
+}
+
+export function getSubServiceUrl(service: SubService): string {
+  return service.seoURL || service.slug || String(service.id);
 }

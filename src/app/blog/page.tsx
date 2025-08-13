@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Blog.module.css';
-import { getArticles, type ArticleItem } from '@/services/blog';
+import { getArticles, getArticleUrl, type ArticleItem } from '@/services/blog';
 import { buildStrapiURL } from '@/lib/strapi';
 
 export const metadata: Metadata = {
@@ -40,7 +40,7 @@ export default async function BlogPage() {
     );
   }
   const [first, ...rest] = list;
-  const firstParam = first.documentId || String(first.id);
+  const firstParam = getArticleUrl(first);
 
   return (
     <section className={styles.page}>
@@ -66,7 +66,7 @@ export default async function BlogPage() {
         {rest.length > 0 && (
           <div className={styles.grid}>
             {rest.map((a) => {
-              const param = a.documentId || String(a.id);
+              const param = getArticleUrl(a);
               return (
                 <article key={a.id} className={styles.card}>
                   <Link href={`/blog/${param}`}>

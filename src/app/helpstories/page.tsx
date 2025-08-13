@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import styles from './HelpStories.module.css';
 import successStyles from '@/components/SuccessStories/SuccessStories.module.css';
-import { getHelpStories } from '@/services/helpStories';
+import { getHelpStories, getStoryUrl } from '@/services/helpStories';
 
 export const metadata: Metadata = {
   title: 'Истории спасения',
@@ -23,7 +23,7 @@ export default async function HelpStoriesPage() {
         ) : (
           <div className={styles.grid}>
             {stories.map(s => {
-              const param = s.documentId || String(s.id);
+              const param = getStoryUrl(s);
               return (
                 <article key={s.id} className={successStyles['story-card']}>
                   <Link href={`/helpstories/${param}`} className={successStyles['story-avatar']}>

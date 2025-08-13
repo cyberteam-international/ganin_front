@@ -7,6 +7,7 @@ export interface HelpStory {
   Short_description?: string;
   Description?: any[]; // blocks array
   zavisimost?: string;
+  seoURL?: string;
   createdAt?: string;
   updatedAt?: string;
   publishedAt?: string;
@@ -33,19 +34,31 @@ export async function getHelpStories(): Promise<HelpStory[]> {
 }
 
 export async function getHelpStory(idOrDocument: string): Promise<HelpStory | null> {
-  // Try direct endpoint first
+  // Try by seoURL first
+  try {
+    const res = await fetchStrapi<StrapiCollectionResponse<HelpStory>>(`/api/help-stories?filters[seoURL][$eq]=${encodeURIComponent(idOrDocument)}`);
+    if (res.data?.[0]) return res.data[0];
+  } catch {}
+  
+  // Try direct endpoint by ID
   try {
     const single = await fetchStrapi<StrapiSingleResponse<HelpStory>>(`/api/help-stories/${idOrDocument}`);
     if (single?.data) return single.data;
   } catch {}
+  
   // Fallback: filter by documentId
   try {
     const res = await fetchStrapi<StrapiCollectionResponse<HelpStory>>(`/api/help-stories?filters[documentId][$eq]=${encodeURIComponent(idOrDocument)}`);
     return res.data?.[0] || null;
   } catch {}
+  
   return null;
 }
 
 export function storyToHtml(story: HelpStory): string {
   return blocksToHtml(story.Description || []);
+}
+
+export function getStoryUrl(story: HelpStory): string {
+  return story.seoURL || story.documentId || String(story.id);
 }

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Article.module.css';
-import { getArticleBySlug, getArticles, type ArticleItem } from '@/services/blog';
+import { getArticleBySlug, getArticles, getArticleUrl, type ArticleItem } from '@/services/blog';
 import { buildStrapiURL } from '@/lib/strapi';
 
 function coverUrl(cover: ArticleItem['cover']) {
@@ -38,7 +38,7 @@ export default async function ArticlePage({ params }: PageProps) {
     );
   }
 
-  const others = (await getArticles()).filter((a) => (a.documentId || String(a.id)) !== (article.documentId || String(article.id))).slice(0, 6);
+  const others = (await getArticles()).filter((a) => getArticleUrl(a) !== getArticleUrl(article)).slice(0, 6);
 
   return (
     <section className={styles.page}>
@@ -59,7 +59,7 @@ export default async function ArticlePage({ params }: PageProps) {
             <div className={styles.sidebarTitle}>Другие статьи</div>
             <div className={styles.otherList}>
               {others.map((a) => {
-                const param = a.documentId || String(a.id);
+                const param = getArticleUrl(a);
                 return (
                   <Link key={a.id} href={`/blog/${param}`} className={styles.otherItem}>
                     <div className={styles.otherThumb}>

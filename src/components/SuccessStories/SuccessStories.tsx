@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import 'swiper/css';
 
 import styles from './SuccessStories.module.css';
-import { getHelpStories, type HelpStory } from '@/services/helpStories';
+import { getHelpStories, getStoryUrl, type HelpStory } from '@/services/helpStories';
 
 export default function SuccessStories() {
     const [stories, setStories] = useState<HelpStory[]>([]);
@@ -92,20 +92,20 @@ export default function SuccessStories() {
                     }}
                 >
                     {stories.map((story) => {
-                        const storyId = story.documentId || String(story.id);
+                        const storyUrl = getStoryUrl(story);
                         return (
                             <SwiperSlide key={story.id} className={styles['swiper-slide']}>
                                 <div className={styles['story-card']}>
-                                    <Link href={`/helpstories/${storyId}`} className={styles['story-avatar']}>
+                                    <Link href={`/helpstories/${storyUrl}`} className={styles['story-avatar']}>
                                         <i className="fas fa-user-circle"></i>
                                     </Link>
-                                    <Link href={`/helpstories/${storyId}`}>
+                                    <Link href={`/helpstories/${storyUrl}`}>
                                         <h3>{story.Title}</h3>
                                     </Link>
                                     {story.zavisimost && <span className={styles['story-tag']}>{story.zavisimost}</span>}
                                     <p>"{story.Short_description}"</p>
                                     <Link 
-                                        href={`/helpstories/${storyId}`}
+                                        href={`/helpstories/${storyUrl}`}
                                         className={styles['story-btn']}
                                     >
                                         <span>Подробнее</span>

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import styles from '../HelpStories.module.css';
-import { getHelpStory, getHelpStories, storyToHtml } from '@/services/helpStories';
+import { getHelpStory, getHelpStories, getStoryUrl, storyToHtml } from '@/services/helpStories';
 
 interface PageProps { params: Promise<{ id: string }> }
 
@@ -25,7 +25,7 @@ export default async function HelpStoryPage({ params }: PageProps) {
   if (!story) {
     return <section className={styles.page}><div className="container">История не найдена</div></section>;
   }
-  const others = (await getHelpStories()).filter(s => (s.documentId || String(s.id)) !== (story.documentId || String(story.id))).slice(0,6);
+  const others = (await getHelpStories()).filter(s => getStoryUrl(s) !== getStoryUrl(story)).slice(0,6);
   return (
     <section className={styles.page}>
       <div className="container">
@@ -38,7 +38,7 @@ export default async function HelpStoryPage({ params }: PageProps) {
             <div className={styles.sidebarTitle}>Другие истории</div>
             <div className={styles.otherList}>
               {others.map(o => {
-                const param = o.documentId || String(o.id);
+                const param = getStoryUrl(o);
                 return (
                   <Link key={o.id} href={`/helpstories/${param}`} className={styles.otherItem}>
                     <div className={styles.otherMeta}>

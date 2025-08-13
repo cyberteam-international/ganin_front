@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Services.module.css';
-import { getMainServices, getSubServices, serviceImageUrl, type MainService, type SubService } from '@/services/services';
+import { getMainServices, getSubServices, getMainServiceUrl, getSubServiceUrl, serviceImageUrl, type MainService, type SubService } from '@/services/services';
 
 export const metadata: Metadata = {
   title: 'Услуги',
@@ -67,7 +67,7 @@ export default async function ServicesPage() {
               </div>
               <div className={styles.serviceContent}>
                 <h3>
-                  <Link href={`/uslugi/${service.slug}`} className={styles.serviceTitle}>
+                  <Link href={`/uslugi/${getMainServiceUrl(service)}`} className={styles.serviceTitle}>
                     {service.title}
                     <i className="fas fa-arrow-right"></i>
                   </Link>
@@ -75,7 +75,7 @@ export default async function ServicesPage() {
                 <ul>
                   {service.sub_services.map((subService) => (
                     <li key={subService.id}>
-                      <Link href={`/uslugi/${subService.slug}`}>
+                      <Link href={`/uslugi/${getSubServiceUrl(subService)}`}>
                         {subService.image && (
                           <div className={styles.subServiceImage}>
                             <Image
