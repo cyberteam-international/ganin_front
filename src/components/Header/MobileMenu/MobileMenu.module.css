@@ -109,3 +109,12 @@
     align-items: center;
     background: var(--primary-dark, #2c3e50);
 }
+
+/* Индикатор загрузки меню */
+.loadingItem {
+    padding: 20px 30px;
+    color: var(--text-secondary, #666);
+    font-size: 16px;
+    text-align: center;
+    font-style: italic;
+}

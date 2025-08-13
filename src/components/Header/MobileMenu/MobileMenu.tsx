@@ -1,17 +1,19 @@
 'use client';
 
-import { MENU_ITEMS } from "../../../store/menu.data";
 import { MenuItem } from "../MenuItem";
 import { usePathname } from "next/navigation";
 import SocialIcons from "../SocialIcons";
+import { type IMenuItem } from "@/services/menu";
 import styles from './MobileMenu.module.css';
 
 interface MobileMenuProps {
     isOpen: boolean;
     onClose: () => void;
+    menuItems: IMenuItem[];
+    isLoading: boolean;
 }
 
-export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+export default function MobileMenu({ isOpen, onClose, menuItems, isLoading }: MobileMenuProps) {
     const pathname = usePathname();
 
     const handleLinkClick = () => {
@@ -31,14 +33,18 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
             <nav className={styles.navigation}>
                 <ul className={styles.navMenu}>
-                    {MENU_ITEMS.map(item => (
-                        <MenuItem
-                            key={item.href}
-                            menuItem={item}
-                            isActive={item.isActive(pathname)}
-                            onLinkClick={handleLinkClick}
-                        />
-                    ))}
+                    {isLoading ? (
+                        <li className={styles.loadingItem}>Загрузка меню...</li>
+                    ) : (
+                        menuItems.map(item => (
+                            <MenuItem
+                                key={item.href}
+                                menuItem={item}
+                                isActive={item.isActive(pathname)}
+                                onLinkClick={handleLinkClick}
+                            />
+                        ))
+                    )}
                 </ul>
             </nav>
             

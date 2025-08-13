@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { IMenuItem } from "../../store/menu.data";
+import type { IMenuItem } from "@/services/menu";
 import styles from './MenuItem.module.css';
 
 interface Props {
