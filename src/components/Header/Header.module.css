@@ -29,14 +29,25 @@
 }
 
 /* Логотип */
-.logo h1 {
+.logo a {
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.logo a:hover {
+    opacity: 0.8;
+}
+
+.logo span {
     font-size: 28px;
     font-weight: 700;
     color: var(--primary-dark, #2c3e50);
     margin: 0;
+    display: block;
+    transition: color 0.3s ease;
 }
 
-.header.scrolled .logo h1 {
+.header.scrolled .logo span {
     color: #fff;
 }
 

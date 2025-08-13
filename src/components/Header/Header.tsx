@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import SocialIcons from "./SocialIcons";
 import BurgerMenu from "./BurgerMenu";
 import MobileMenu from "./MobileMenu";
@@ -48,7 +49,9 @@ export default function Header() {
                 <div className="container">
                     <div className={styles.headerTop}>
                         <div className={styles.logo}>
-                            <h1>Ганин Вячеслав</h1>
+                            <Link href="/">
+                                <span>Ганин Вячеслав</span>
+                            </Link>
                         </div>
 
                         <div className={styles.headerRight}>
