@@ -1,6 +1,20 @@
+'use client';
+
+import { useState } from 'react';
+import BookingModal from '@/components/BookingModal';
 import styles from './Footer.module.css';
 
 export default function Footer() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleConsultationClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -31,7 +45,7 @@ export default function Footer() {
           </div>
 
           <div className={`${styles.contactItem} ${styles.ctaContact}`}>
-            <button className={styles.consultationBtn}>
+            <button className={styles.consultationBtn} onClick={handleConsultationClick}>
               <span>Консультация</span>
               <div className={styles.btnIcon}>
                 <i className="fas fa-arrow-right"></i>
@@ -102,6 +116,11 @@ export default function Footer() {
           <p>&copy; 2025 Ганин Вячеслав. Все права защищены.</p>
         </div>
       </div>
+      
+      <BookingModal 
+        isOpen={isModalOpen} 
+        onClose={handleCloseModal} 
+      />
     </footer>
   );
 }

@@ -1,8 +1,22 @@
+'use client';
+
+import { useState } from 'react';
 import Button from '@/components/ui/Button/Button';
+import BookingModal from '@/components/BookingModal';
 import Image from 'next/image';
 import styles from './Hero.module.css';
 
 export default function Hero() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleBookingClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <section id="hero" className={styles.hero}>
             <div className="container">
@@ -26,7 +40,7 @@ export default function Hero() {
                         </div>
                         
                         <div className={styles['hero-cta']}>
-                            <Button variant="hero">
+                            <Button variant="hero" onClick={handleBookingClick}>
                                 Записаться
                             </Button>
                         </div>
@@ -56,6 +70,11 @@ export default function Hero() {
                     </div>
                 </div>
             </div>
+            
+            <BookingModal 
+                isOpen={isModalOpen} 
+                onClose={handleCloseModal} 
+            />
         </section>
     );
 }

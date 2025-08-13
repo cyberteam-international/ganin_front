@@ -7,6 +7,7 @@ import WhyMe from '@/components/WhyMe';
 import Education from '@/components/Education';
 import SuccessStories from '@/components/SuccessStories';
 import Articles from '@/components/Articles';
+import ConsultationButton from '@/components/ConsultationButton';
 
 type PageProps = { params: Promise<{ id_uslugi: string }> };
 
@@ -63,9 +64,9 @@ export default async function ServicePage({ params }: PageProps) {
               </Link>
               <h1 className={styles.heroTitle}>{service.title}</h1>
               <p className={styles.heroDescription}>{service.excerpt}</p>
-              <button className={styles.consultationBtn}>
+              <ConsultationButton className={styles.consultationBtn}>
                 Бесплатная консультация
-              </button>
+              </ConsultationButton>
             </div>
             <div className={styles.heroImage}>
               <Image
