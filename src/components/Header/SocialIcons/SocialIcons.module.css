@@ -47,10 +47,10 @@
     opacity: 1;
 }
 
-.socialLink.vk {
-    background: linear-gradient(135deg, #4680C2 0%, #5a9fd4 100%);
-    color: white;
-    box-shadow: 0 8px 25px rgba(70, 128, 194, 0.4);
+.socialLink.dzen {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    color: #2c3e50;
+    box-shadow: 0 8px 25px rgba(44, 62, 80, 0.2);
 }
 
 .socialLink.telegram {

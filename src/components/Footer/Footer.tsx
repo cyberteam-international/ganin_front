@@ -65,13 +65,13 @@ export default function Footer() {
             <div className={styles.footerSocial}>
               <h3>Социальные сети</h3>
               <div className={styles.socialIcons}>
-                <a href="#" className={`${styles.socialLink} ${styles.vk}`}>
-                  <i className="fab fa-vk"></i>
+                <a href="https://dzen.ru/profile/editor/ganin" className={`${styles.socialLink} ${styles.dzen}`} target="_blank" rel="noopener noreferrer">
+                  <i className="fab fa-yandex"></i>
                 </a>
-                <a href="#" className={`${styles.socialLink} ${styles.telegram}`}>
+                <a href="https://t.me/slavamsupsy" className={`${styles.socialLink} ${styles.telegram}`} target="_blank" rel="noopener noreferrer">
                   <i className="fab fa-telegram"></i>
                 </a>
-                <a href="#" className={`${styles.socialLink} ${styles.whatsapp}`}>
+                <a href="https://wa.me/qr/LEBURMMQ5WUCP1" className={`${styles.socialLink} ${styles.whatsapp}`} target="_blank" rel="noopener noreferrer">
                   <i className="fab fa-whatsapp"></i>
                 </a>
               </div>

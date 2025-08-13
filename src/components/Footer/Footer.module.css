@@ -187,8 +187,9 @@
   font-size: 18px;
 }
 
-.socialLink.vk {
-  background: #4680C2;
+.socialLink.dzen {
+  background: #ffffff;
+  color: #2c3e50;
 }
 
 .socialLink.telegram {
