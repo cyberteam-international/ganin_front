@@ -3,14 +3,9 @@ import Link from 'next/link';
 import styles from './HelpStories.module.css';
 import successStyles from '@/components/SuccessStories/SuccessStories.module.css';
 import { getHelpStories, getStoryUrl } from '@/services/helpStories';
+import { generateMetadata as generateMeta, pageConfigs } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Истории спасения',
-  description: 'Реальные истории восстановления и преодоления зависимостей.',
-  alternates: { canonical: '/helpstories' },
-  openGraph: { title: 'Истории спасения', description: 'Реальные истории восстановления и преодоления зависимостей.', url: '/helpstories', type: 'website' },
-  twitter: { card: 'summary', title: 'Истории спасения', description: 'Реальные истории восстановления и преодоления зависимостей.' }
-};
+export const metadata: Metadata = generateMeta(pageConfigs.helpStories);
 
 export default async function HelpStoriesPage() {
   const stories = await getHelpStories();

@@ -4,23 +4,9 @@ import Image from 'next/image';
 import styles from './Blog.module.css';
 import { getArticles, getArticleUrl, type ArticleItem } from '@/services/blog';
 import { buildStrapiURL } from '@/lib/strapi';
+import { generateMetadata as generateMeta, pageConfigs } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Блог',
-  description: 'Статьи и материалы по психологии, зависимостям и восстановлению.',
-  alternates: { canonical: '/blog' },
-  openGraph: {
-    title: 'Блог',
-    description: 'Статьи и материалы по психологии, зависимостям и восстановлению.',
-    url: '/blog',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Блог',
-    description: 'Статьи и материалы по психологии, зависимостям и восстановлению.',
-  },
-} as any;
+export const metadata: Metadata = generateMeta(pageConfigs.blog);
 
 function coverUrl(cover: ArticleItem['cover']) {
   const url = cover?.formats?.medium?.url || cover?.formats?.small?.url || cover?.url;

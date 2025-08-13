@@ -6,11 +6,9 @@ import WhyMe from "@/components/WhyMe";
 import Education from "@/components/Education";
 import Articles from "@/components/Articles";
 import SuccessStories from "@/components/SuccessStories";
+import { generateMetadata as generateMeta, pageConfigs } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Ганин Вячеслав - Клинический психолог",
-  description: "Магистр психологии, психоаналитик, педагог-психолог. Помощь при зависимости, созависимости, тревожности и других психологических проблемах.",
-};
+export const metadata: Metadata = generateMeta(pageConfigs.home);
 
 export default function Home() {
   return (

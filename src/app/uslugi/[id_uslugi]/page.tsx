@@ -8,34 +8,22 @@ import Education from '@/components/Education';
 import SuccessStories from '@/components/SuccessStories';
 import Articles from '@/components/Articles';
 import ConsultationButton from '@/components/ConsultationButton';
+import { generateServiceMetadata } from '@/lib/metadata';
 
 type PageProps = { params: Promise<{ id_uslugi: string }> };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id_uslugi } = await params;
   const service = await getServiceBySlug(id_uslugi);
-  const title = service?.title || 'Услуга';
-  const description = service?.excerpt || 'Профессиональная психологическая помощь';
-  const ogImage = serviceImageUrl();
   
-  return {
-    title,
-    description,
-    alternates: { canonical: `/uslugi/${id_uslugi}` },
-    openGraph: { 
-      title, 
-      description, 
-      url: `/uslugi/${id_uslugi}`, 
-      type: 'article', 
-      images: ogImage ? [{ url: ogImage }] : undefined 
-    },
-    twitter: { 
-      card: 'summary_large_image', 
-      title, 
-      description, 
-      images: ogImage ? [ogImage] : undefined 
-    },
-  };
+  if (!service) {
+    return {
+      title: 'Услуга не найдена',
+      description: 'Запрашиваемая услуга не найдена'
+    };
+  }
+  
+  return generateServiceMetadata(service);
 }
 
 export default async function ServicePage({ params }: PageProps) {

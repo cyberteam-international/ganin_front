@@ -4,6 +4,7 @@ import Image from 'next/image';
 import styles from './Article.module.css';
 import { getArticleBySlug, getArticles, getArticleUrl, type ArticleItem } from '@/services/blog';
 import { buildStrapiURL } from '@/lib/strapi';
+import { generateArticleMetadata } from '@/lib/metadata';
 
 function coverUrl(cover: ArticleItem['cover']) {
   const url = cover?.formats?.large?.url || cover?.formats?.medium?.url || cover?.url;
@@ -14,17 +15,16 @@ type PageProps = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const a = await getArticleBySlug(slug);
-  const title = a?.title || 'Статья';
-  const description = a?.excerpt || 'Статья блога';
-  const ogImage = coverUrl(a?.cover);
-  return {
-    title,
-    description,
-    alternates: { canonical: `/blog/${slug}` },
-    openGraph: { title, description, url: `/blog/${slug}`, type: 'article', images: ogImage ? [{ url: ogImage }] : undefined },
-    twitter: { card: 'summary_large_image', title, description, images: ogImage ? [ogImage] : undefined },
-  };
+  const article = await getArticleBySlug(slug);
+  
+  if (!article) {
+    return {
+      title: 'Статья не найдена',
+      description: 'Запрашиваемая статья не найдена'
+    };
+  }
+  
+  return generateArticleMetadata(article);
 }
 
 export default async function ArticlePage({ params }: PageProps) {

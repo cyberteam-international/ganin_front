@@ -3,23 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Services.module.css';
 import { getMainServices, getSubServices, getMainServiceUrl, getSubServiceUrl, serviceImageUrl, type MainService, type SubService } from '@/services/services';
+import { generateMetadata as generateMeta, pageConfigs } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Услуги',
-  description: 'Профессиональные психологические услуги: консультирование, психотерапия, работа с зависимостями.',
-  alternates: { canonical: '/uslugi' },
-  openGraph: {
-    title: 'Услуги',
-    description: 'Профессиональные психологические услуги: консультирование, психотерапия, работа с зависимостями.',
-    url: '/uslugi',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Услуги',
-    description: 'Профессиональные психологические услуги: консультирование, психотерапия, работа с зависимостями.',
-  },
-} as any;
+export const metadata: Metadata = generateMeta(pageConfigs.services);
 
 export default async function ServicesPage() {
   const [mainServices, subServices] = await Promise.all([

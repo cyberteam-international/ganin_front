@@ -2,21 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import styles from '../HelpStories.module.css';
 import { getHelpStory, getHelpStories, getStoryUrl, storyToHtml } from '@/services/helpStories';
+import { generateStoryMetadata } from '@/lib/metadata';
 
 interface PageProps { params: Promise<{ id: string }> }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
   const story = await getHelpStory(id);
-  const title = story?.Title || 'История спасения';
-  const description = story?.Short_description || 'История восстановления';
-  return {
-    title,
-    description,
-    alternates: { canonical: `/helpstories/${id}` },
-    openGraph: { title, description, url: `/helpstories/${id}`, type: 'article' },
-    twitter: { card: 'summary', title, description }
-  };
+  
+  if (!story) {
+    return {
+      title: 'История не найдена',
+      description: 'Запрашиваемая история не найдена'
+    };
+  }
+  
+  return generateStoryMetadata(story);
 }
 
 export default async function HelpStoryPage({ params }: PageProps) {
