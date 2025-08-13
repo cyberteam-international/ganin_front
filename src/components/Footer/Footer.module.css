@@ -280,14 +280,13 @@
   }
   
   .contactItem {
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
+    text-align: left;
     gap: 10px;
+    justify-content: flex-start;
   }
   
   .contactDetails {
-    text-align: center;
+    text-align: left;
   }
   
   .footerNavigation {
@@ -298,14 +297,14 @@
   /* Перемещаем блок с основными ссылками и соцсетями в конец */
   .mainLinksColumn {
     order: 1;
-    text-align: center;
+    
   }
   
   .footerSocial {
-    text-align: center;
+    text-align: left;
   }
   
   .socialIcons {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
