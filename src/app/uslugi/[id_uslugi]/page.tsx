@@ -6,6 +6,7 @@ import { getServiceBySlug, type ServiceItem, serviceImageUrl } from '@/services/
 import WhyMe from '@/components/WhyMe';
 import Education from '@/components/Education';
 import SuccessStories from '@/components/SuccessStories';
+import Articles from '@/components/Articles';
 
 type PageProps = { params: Promise<{ id_uslugi: string }> };
 
@@ -137,6 +138,7 @@ export default async function ServicePage({ params }: PageProps) {
       {/* Переиспользуемые компоненты */}
       <WhyMe />
       <Education />
+      <Articles />
       <SuccessStories />
     </>
   );

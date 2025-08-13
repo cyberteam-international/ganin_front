@@ -24,8 +24,7 @@ export default function Breadcrumbs() {
       const hEl = header(); if (!hEl) return;
       const h = hEl.getBoundingClientRect().height;
       if (h > 0) {
-        const gap = (window.innerWidth || 0) > 768 ? 8 : 0; // no extra gap on mobile
-        setOffset(h + gap);
+        setOffset(h);
       } else if (attempts < 40) { attempts++; setTimeout(apply, 100); }
     };
     apply();

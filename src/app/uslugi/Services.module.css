@@ -3,10 +3,16 @@
    =============== */
 
 .page {
-    padding: 120px 0 80px;
-    background: var(--bg-primary);
+    padding: 120px 0;
+    background: transparent;
     position: relative;
     overflow: hidden;
+    min-height: 100vh;
+}
+
+.page .container {
+    position: relative;
+    z-index: 1;
 }
 
 .title {
@@ -86,8 +92,13 @@
     flex-shrink: 0;
 }
 
+/* Контент услуги */
+.serviceContent {
+    min-width: 0;
+}
+
 /* Заголовок услуги */
-.serviceCard h3 {
+.serviceContent h3 {
     font-size: 28px;
     font-weight: 700;
     color: #2c3e50;
@@ -177,29 +188,32 @@
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
-    text-align: center;
-}
-
-.serviceContent li a::before {
-    content: '→';
-    position: absolute;
-    left: 18px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-weight: bold;
-    color: var(--accent-color);
-    transition: all 0.3s ease;
 }
 
 .serviceContent li a:hover {
     background: rgba(255, 255, 255, 0.9);
-    border-color: var(--accent-color);
-    transform: translateX(3px);
-    box-shadow: 0 5px 15px rgba(44, 62, 80, 0.1);
+    border-color: rgba(44, 62, 80, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.serviceContent li a:hover::before {
-    transform: translateY(-50%) translateX(3px);
+.serviceContent li a::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23666'%3E%3Cpath d='M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: 12px;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.serviceContent li a:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(5px);
 }
 
 /* Адаптивность */
