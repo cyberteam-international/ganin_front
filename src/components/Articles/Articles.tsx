@@ -48,13 +48,13 @@ export default function Articles() {
             slidesPerView="auto"
             spaceBetween={30}
             centeredSlides={false}
-            loop={articlesData.length > 3}
+            loop={articlesData.length > 2}
             speed={600}
             allowTouchMove={true}
             watchOverflow={true}
             breakpoints={{
-              320: { slidesPerView: 1.2, spaceBetween: 15, centeredSlides: false },
-              768: { slidesPerView: 2.2, spaceBetween: 25, centeredSlides: false },
+              320: { slidesPerView: 1.2, spaceBetween: 15, centeredSlides: true },
+              768: { slidesPerView: 2.2, spaceBetween: 25, centeredSlides: true },
               1024: { slidesPerView: 3, spaceBetween: 30, centeredSlides: false, allowTouchMove: true, loop: false },
               1200: { slidesPerView: 3, spaceBetween: 30, centeredSlides: false, allowTouchMove: true, loop: false },
             }}
