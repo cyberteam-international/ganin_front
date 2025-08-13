@@ -1,68 +1,64 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Services.module.css';
+import { getMainServicesWithSubs, getMainServiceUrl, getSubServiceUrl, serviceImageUrl } from '@/services/services';
 
-export default function Services() {
+export default async function Services() {
+    const servicesWithSubs = await getMainServicesWithSubs();
+    
+    // Если нет данных, показываем fallback или ничего
+    if (!servicesWithSubs.length) {
+        return (
+            <section id="services" className={styles.services}>
+                <div className="container">
+                    <h2 className={styles['section-title']}>Услуги</h2>
+                    <div className={styles['services-grid']}>
+                        <p>Загрузка услуг...</p>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section id="services" className={styles.services}>
             <div className="container">
                 <h2 className={styles['section-title']}>Услуги</h2>
                 <div className={styles['services-grid']}>
-                    <div className={styles['service-card']}>
-                        <div className={styles['service-icon']}>
-                            <i className="fas fa-comments"></i>
+                    {servicesWithSubs.map((service) => (
+                        <div key={service.id} className={styles['service-card']}>
+                            <div className={styles['service-icon']}>
+                                <i className={service.icon}></i>
+                            </div>
+                            <div className={styles['service-content']}>
+                                <h3>
+                                    <Link href={`/uslugi/${getMainServiceUrl(service)}`}>
+                                        {service.title}
+                                        <i className="fas fa-arrow-right"></i>
+                                    </Link>
+                                </h3>
+                                <ul>
+                                    {service.sub_services.map((subService) => (
+                                        <li key={subService.id}>
+                                            <Link href={`/uslugi/${getSubServiceUrl(subService)}`}>
+                                                {subService.image && (
+                                                    <div className={styles['sub-service-image']}>
+                                                        <Image
+                                                            src={serviceImageUrl(subService.image)}
+                                                            alt={subService.title}
+                                                            width={40}
+                                                            height={40}
+                                                        />
+                                                    </div>
+                                                )}
+                                                <span>{subService.title}</span>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
-                        <div className={styles['service-content']}>
-                            <h3>
-                                Консультирование 
-                                <i className="fas fa-arrow-right"></i>
-                            </h3>
-                            <ul>
-                                <li><a href="#service-1">Решение жизненных и личных проблем</a></li>
-                                <li><a href="#service-2">Сложные отношения</a></li>
-                                <li><a href="#service-3">Проблемы в семье и социализация</a></li>
-                                <li><a href="#service-4">Потеря смысла жизни, одиночество</a></li>
-                                <li><a href="#service-5">Поддержка в кризисной ситуации</a></li>
-                                <li><a href="#service-6">Консультации для родителей</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div className={styles['service-card']}>
-                        <div className={styles['service-icon']}>
-                            <i className="fas fa-heart"></i>
-                        </div>
-                        <div className={styles['service-content']}>
-                            <h3>
-                                Психотерапия 
-                                <i className="fas fa-arrow-right"></i>
-                            </h3>
-                            <ul>
-                                <li><a href="#service-7">Работа с самооценкой</a></li>
-                                <li><a href="#service-8">Психосоматика</a></li>
-                                <li><a href="#service-9">Детские и юношеские травмы</a></li>
-                                <li><a href="#service-10">Выявление внутренних конфликтов</a></li>
-                                <li><a href="#service-11">Преодоление негативных установок</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div className={styles['service-card']}>
-                        <div className={styles['service-icon']}>
-                            <i className="fas fa-hands-helping"></i>
-                        </div>
-                        <div className={styles['service-content']}>
-                            <h3>
-                                Зависимость / Cозависимость 
-                                <i className="fas fa-arrow-right"></i>
-                            </h3>
-                            <ul>
-                                <li><a href="#service-12">Восстановление после лечения</a></li>
-                                <li><a href="#service-13">Поддержка после выхода из зависимости</a></li>
-                                <li><a href="#service-14">Работа с родственниками зависимых</a></li>
-                                <li><a href="#service-15">Восстановление отношений</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    ))}
                 </div>
                 
                 <div className={styles['services-link']}>

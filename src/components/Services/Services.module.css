@@ -90,6 +90,17 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    flex-wrap: nowrap;
+}
+
+.service-card h3 a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: nowrap;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
 }
 
 /* Стилизация Font Awesome иконки в заголовке */
@@ -107,6 +118,7 @@
     -webkit-text-fill-color: #2c3e50;
     transition: all 0.3s ease;
     transform: rotate(-45deg);
+    min-width: 28px;
 }
 
 .service-card h3:hover :global(.fas.fa-arrow-right) {
@@ -149,7 +161,7 @@
 .service-card li a {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 12px;
     padding: 15px 40px 15px 25px;
     color: #555;
     text-decoration: none;
@@ -157,6 +169,10 @@
     line-height: 1.6;
     transition: all 0.3s ease;
     position: relative;
+}
+
+.service-card li a span {
+    flex: 1;
 }
 
 .service-card li a::after {
@@ -190,6 +206,21 @@
     background: var(--accent-color);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z'/%3E%3C/svg%3E");
     transform: translateX(0);
+}
+
+/* Изображения подуслуг */
+.sub-service-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.sub-service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Адаптивные стили для планшетов */
