@@ -6,4 +6,5 @@ export const PAGES = {
     CONTACTS: "/contacts",
     USLUGI: '/uslugi',
     USLUGA: (servicename:string) => `/uslugi/${servicename}`,
+    FAQ: "/faq",
 } 

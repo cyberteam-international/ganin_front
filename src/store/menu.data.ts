@@ -72,5 +72,10 @@ export const MENU_ITEMS: IMenuItem[] = [
         href: PAGES.BLOG,
         label: "Статьи",
         isActive: (pathname: string) => pathname === PAGES.BLOG
+    },
+    {
+        href: PAGES.FAQ,
+        label: "FAQ",
+        isActive: (pathname: string) => pathname === PAGES.FAQ
     }
 ]
