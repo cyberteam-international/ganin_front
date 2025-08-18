@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import styles from '../HelpStories.module.css';
+import contentStyles from '@/styles/ContentStyles.module.css';
 import { getHelpStory, getHelpStories, getStoryUrl, storyToHtml } from '@/services/helpStories';
 import { generateStoryMetadata } from '@/lib/metadata';
 
@@ -34,7 +35,7 @@ export default async function HelpStoryPage({ params }: PageProps) {
         <h1 className={styles.title}>{story.Title}</h1>
         {story.zavisimost && <div className={styles.tag}>{story.zavisimost}</div>}
         <div className={styles.singleWrapper}>
-          <div className={styles.content} dangerouslySetInnerHTML={{ __html: storyToHtml(story) }} />
+          <div className={`${styles.content} ${contentStyles.content}`} dangerouslySetInnerHTML={{ __html: storyToHtml(story) }} />
           <aside className={styles.sidebar}>
             <div className={styles.sidebarTitle}>Другие истории</div>
             <div className={styles.otherList}>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Service.module.css';
+import contentStyles from '@/styles/ContentStyles.module.css';
 import { getServiceBySlug, type ServiceItem, serviceImageUrl } from '@/services/services';
 import WhyMe from '@/components/WhyMe';
 import Education from '@/components/Education';
@@ -73,7 +74,7 @@ export default async function ServicePage({ params }: PageProps) {
       <section className={styles.content}>
         <div className="container">
           <div 
-            className={styles.contentBody}
+            className={`${styles.contentBody} ${contentStyles.content}`}
             dangerouslySetInnerHTML={{ __html: service.content }}
           />
         </div>

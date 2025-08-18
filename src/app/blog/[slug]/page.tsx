@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Article.module.css';
+import contentStyles from '@/styles/ContentStyles.module.css';
 import { getArticleBySlug, getArticles, getArticleUrl, type ArticleItem } from '@/services/blog';
 import { buildStrapiURL } from '@/lib/strapi';
 import { generateArticleMetadata } from '@/lib/metadata';
@@ -52,7 +53,7 @@ export default async function ArticlePage({ params }: PageProps) {
             <div className={styles.cover}>
               <Image src={coverUrl(article.cover)} alt={article.title} fill sizes="(max-width: 1024px) 100vw, 66vw" style={{ objectFit: 'cover' }} />
             </div>
-            <div className={styles.content} dangerouslySetInnerHTML={{ __html: article.content || '' }} />
+            <div className={`${styles.content} ${contentStyles.content}`} dangerouslySetInnerHTML={{ __html: article.content || '' }} />
           </div>
 
           <aside className={styles.sidebar}>
