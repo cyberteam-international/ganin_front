@@ -21,15 +21,6 @@ const nextConfig: NextConfig = {
   },
   // Enable compression
   compress: true,
-  // Enable static optimization
-  output: 'standalone',
-  // Optimize builds
-  experimental: {
-    optimizeCss: true,
-    optimizePackageImports: ['react', 'react-dom'],
-  },
-  // Reduce bundle size
-  swcMinify: true,
 };
 
 export default nextConfig;
