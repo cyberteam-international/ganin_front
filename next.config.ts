@@ -16,7 +16,20 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60,
   },
+  // Enable compression
+  compress: true,
+  // Enable static optimization
+  output: 'standalone',
+  // Optimize builds
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['react', 'react-dom'],
+  },
+  // Reduce bundle size
+  swcMinify: true,
 };
 
 export default nextConfig;
